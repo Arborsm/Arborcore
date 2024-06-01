@@ -1,6 +1,0 @@
-{
-  "parent": "gtceu:item/material_sets/shiny/nugget",
-  "textures": {
-    "layer1": "gtceu:item/material_sets/infinity/nugget_overlay"
-  }
-}

@@ -6,18 +6,12 @@ plugins {
     // alias libs.plugins.vineFlower // VineFlower, a better decompiler
     alias libs.plugins.machete // automatic jar compressing on build
     alias libs.plugins.shadow
-    // Adds the Kotlin Gradle plugin
-    alias libs.plugins.kotlin.jvm
-    // OPTIONAL Kotlin Serialization plugin
-    alias libs.plugins.kotlin.plugin
 }
 
 apply plugin: "dev.architectury.loom"
 apply plugin: "java"
 apply plugin: "architectury-plugin"
 apply plugin: "maven-publish"
-apply plugin: "org.jetbrains.kotlin.jvm"
-apply plugin: "org.jetbrains.kotlin.plugin.serialization"
 
 architectury {
     compileOnly()
