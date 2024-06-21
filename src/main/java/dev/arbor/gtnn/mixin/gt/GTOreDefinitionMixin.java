@@ -1,10 +1,10 @@
 package dev.arbor.gtnn.mixin.gt;
 
-import com.gregtechceu.gtceu.api.data.worldgen.BiomeWeightModifier;
-import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
-import com.gregtechceu.gtceu.api.data.worldgen.IWorldGenLayer;
-import com.gregtechceu.gtceu.api.data.worldgen.generator.IndicatorGenerator;
-import com.gregtechceu.gtceu.api.data.worldgen.generator.VeinGenerator;
+import com.gregtechceu.gtceu.api.worldgen.BiomeWeightModifier;
+import com.gregtechceu.gtceu.api.worldgen.GTOreDefinition;
+import com.gregtechceu.gtceu.api.worldgen.IWorldGenLayer;
+import com.gregtechceu.gtceu.api.worldgen.generator.IndicatorGenerator;
+import com.gregtechceu.gtceu.api.worldgen.generator.VeinGenerator;
 import dev.arbor.gtnn.GTNN;
 import net.minecraft.core.HolderSet;
 import net.minecraft.resources.ResourceKey;
@@ -28,7 +28,7 @@ public abstract class GTOreDefinitionMixin {
     @Shadow
     private IntProvider clusterSize;
 
-    @Inject(method = "<init>(Lnet/minecraft/util/valueproviders/IntProvider;FILcom/gregtechceu/gtceu/api/data/worldgen/IWorldGenLayer;Ljava/util/Set;Lnet/minecraft/world/level/levelgen/placement/HeightRangePlacement;FLjava/util/function/Supplier;Lcom/gregtechceu/gtceu/api/data/worldgen/BiomeWeightModifier;Lcom/gregtechceu/gtceu/api/data/worldgen/generator/VeinGenerator;Ljava/util/List;)V", at = @At("TAIL"))
+    @Inject(method = "<init>(Lnet/minecraft/util/valueproviders/IntProvider;FILcom/gregtechceu/gtceu/api/worldgen/IWorldGenLayer;Ljava/util/Set;Lnet/minecraft/world/level/levelgen/placement/HeightRangePlacement;FLjava/util/function/Supplier;Lcom/gregtechceu/gtceu/api/worldgen/BiomeWeightModifier;Lcom/gregtechceu/gtceu/api/worldgen/generator/VeinGenerator;Ljava/util/List;)V", at = @At("TAIL"))
     private void init(IntProvider clusterSize, float density, int weight, IWorldGenLayer layer,
                       Set<ResourceKey<Level>> dimensionFilter, HeightRangePlacement range, float discardChanceOnAirExposure,
                       Supplier<HolderSet<Biome>> biomes, BiomeWeightModifier biomeWeightModifier, VeinGenerator veinGenerator,

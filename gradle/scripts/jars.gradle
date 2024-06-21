@@ -1,33 +1,20 @@
-//file:noinspection GroovyUnusedAssignment
-apply plugin: "dev.architectury.loom"
-
 java {
     withSourcesJar()
 }
 
-shadowJar {
-    exclude "fabric.mod.json"
-    exclude "architectury.common.json"
-
-    configurations = [project.configurations.shadow]
-    archiveClassifier = "dev-shadow"
-}
-
-remapJar {
-    inputFile.set shadowJar.archiveFile
-    dependsOn shadowJar
-    archiveClassifier = null
-}
-
-jar {
-    archiveClassifier = "dev"
-}
-
-remapSlimJar {
-    addNestedDependencies = false
+tasks.jar {
     archiveClassifier = "slim"
 }
 
-tasks.remapJar.dependsOn('remapSlimJar')
+tasks.jarJar {
+    archiveClassifier.convention(null)
+}
 
-archivesBaseName = "${project.name}"
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}
+
+archivesBaseName = "${project.name}-${libs.versions.minecraft.get()}"

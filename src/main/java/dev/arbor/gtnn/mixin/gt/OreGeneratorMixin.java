@@ -1,14 +1,14 @@
 package dev.arbor.gtnn.mixin.gt;
 
 import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.api.data.worldgen.GTOreDefinition;
-import com.gregtechceu.gtceu.api.data.worldgen.WorldGeneratorUtils;
-import com.gregtechceu.gtceu.api.data.worldgen.ores.GeneratedVeinMetadata;
-import com.gregtechceu.gtceu.api.data.worldgen.ores.OreGenerator;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
+import com.gregtechceu.gtceu.api.worldgen.GTOreDefinition;
+import com.gregtechceu.gtceu.api.worldgen.WorldGeneratorUtils;
+import com.gregtechceu.gtceu.api.worldgen.ores.GeneratedVeinMetadata;
+import com.gregtechceu.gtceu.api.worldgen.ores.OreGenerator;
 import com.gregtechceu.gtceu.config.ConfigHolder;
 import dev.arbor.gtnn.GTNN;
-import dev.arbor.gtnn.api.mixin.VeinConfiguration;
+import dev.arbor.gtnn.mixin.misc.VeinConfiguration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;

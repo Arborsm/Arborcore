@@ -78,11 +78,12 @@ repositories {
         url "https://maven.su5ed.dev/releases"
     }
     maven {
+        url "https://maven.impactdev.net/repository/development/"
+    }
+    maven { url = "https://maven.ithundxr.dev/snapshots" } // Registrate Fork
+    maven {
         name = 'Kotlin for Forge'
         url = 'https://thedarkcolour.github.io/KotlinForForge/'
         content { includeGroup "thedarkcolour" }
-    }
-    maven {
-        url "https://maven.impactdev.net/repository/development/"
     }
 }

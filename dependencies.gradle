@@ -1,0 +1,64 @@
+dependencies {
+    implementation forge.neoForge
+
+    implementation 'thedarkcolour:kotlinforforge-neoforge:5.3.0'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    // LDLib
+    implementation(forge.ldlib.forge) { transitive = false }
+
+    // Registrate
+    implementation("com.tterrag.registrate:Registrate:${forge.versions.registrate.get()}")
+
+    // Create and its dependencies
+    compileOnly("com.simibubi.create:create-${libs.versions.minecraftVeryOld.get()}:${forge.versions.createForge.get()}:all") { transitive = false }
+    compileOnly forge.flywheel
+
+    // JEI
+    compileOnly(forge.jei.common.api) { transitive = false }
+    compileOnly(forge.jei.forge.api) { transitive = false }
+    implementation(forge.jei.forge.impl) { transitive = false }
+
+    // REI
+    compileOnly forge.rei.plugin
+    compileOnly forge.rei.api
+    compileOnly forge.rei.forge
+
+    // EMI
+    compileOnlyApi("dev.emi:emi-neoforge:${forge.versions.emi.get()}:api")
+    implementation forge.emi
+
+    // Jade
+    compileOnlyApi(forge.jade)
+
+    // Configuration
+    implementation(forge.configuration)
+
+    // Shimmer
+    compileOnly(forge.shimmer.forge) { transitive = false }
+
+    // GTM
+    implementation(forge.gtm) { transitive = false }
+
+    // AdAstra
+    compileOnly(forge.ad.astra) { transitive = false }
+    compileOnly(forge.resourcefullib) { transitive = false }
+    compileOnly(forge.resourcefulconfig)
+    compileOnly(forge.botarium)
+
+    // lib
+    //modImplementation("org.arbor:arbormixin:1.0")
+    //include("org.arbor:arbormixin:1.0")
+
+    //others
+    compileOnly("curse.maven:supplementaries-412082:5340612")
+    compileOnly("curse.maven:cc-tweaked-282001:5118388")
+    compileOnly("curse.maven:selene-499980:5361081")
+    compileOnly("com.cobblemon:forge:1.5.0+")
+    compileOnly("curse.maven:ascension-megamons-971821:5336649")
+    compileOnly("curse.maven:observable-509575:5080064")
+    compileOnly("curse.maven:architectury-api-419699:5137938")
+}

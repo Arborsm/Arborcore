@@ -1,9 +1,9 @@
 package dev.arbor.gtnn.mixin.gt;
 
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.IMaterialProperty;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.MaterialProperties;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
+import com.gregtechceu.gtceu.api.material.material.Material;
+import com.gregtechceu.gtceu.api.material.material.properties.IMaterialProperty;
+import com.gregtechceu.gtceu.api.material.material.properties.MaterialProperties;
+import com.gregtechceu.gtceu.api.material.material.properties.PropertyKey;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

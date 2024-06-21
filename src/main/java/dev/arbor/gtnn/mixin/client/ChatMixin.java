@@ -8,8 +8,8 @@ import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MessageSignature;
 import net.minecraft.util.Mth;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,7 +23,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("all")
 @OnlyIn(Dist.CLIENT)
 @Mixin(ChatComponent.class)
 public class ChatMixin {
@@ -32,7 +31,6 @@ public class ChatMixin {
     @Shadow private int getLineHeight() { return 0; }
     @Unique private final ArrayList<Long> arborCore$messageTimestamps = new ArrayList<>();
 
-    @Unique private final float arborCore$fadeOffsetYScale = 0.8f; // scale * lineHeight
     @Unique private final float arborCore$fadeTime = 130;
 
     @Unique
@@ -45,6 +43,8 @@ public class ChatMixin {
         // Calculate current required to be offset to achieve slide in from bottom effect
         try {
             int lineHeight = this.getLineHeight();
+            // scale * lineHeight
+            float arborCore$fadeOffsetYScale = 0.8f;
             float maxDisplacement = (float)lineHeight * arborCore$fadeOffsetYScale;
             long timestamp = arborCore$messageTimestamps.get(arborCore$chatLineIndex);
             long timeAlive = System.currentTimeMillis() - timestamp;
@@ -95,19 +95,19 @@ public class ChatMixin {
 
     @ModifyVariable(method = "render", at = @At(
             value = "STORE"
-    ))
-    private GuiMessageTag removeMessageIndicator(GuiMessageTag messageIndicator) {
-        if (!GTNN.INSTANCE.getClientConfig().addChatAnimation) return messageIndicator;
+    ), argsOnly = true)
+    private GuiMessageTag removeMessageIndicator(GuiMessageTag value) {
+        if (!GTNN.INSTANCE.getClientConfig().addChatAnimation) return value;
         // Don't allow the chat indicator bar to be rendered
         return null;
     }
 
-    @Inject(method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;ILnet/minecraft/client/GuiMessageTag;Z)V", at = @At("TAIL"))
-    private void addMessage(Component message, MessageSignature signature, int ticks, GuiMessageTag indicator, boolean refresh, CallbackInfo ci) {
+    @Inject(method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;Lnet/minecraft/client/GuiMessageTag;)V", at = @At("TAIL"))
+    private void addMessage(Component pChatComponent, MessageSignature pHeaderSignature, GuiMessageTag pTag, CallbackInfo ci) {
         if (GTNN.INSTANCE.getClientConfig().addChatAnimation) {
-            arborCore$messageTimestamps.add(0, System.currentTimeMillis());
+            arborCore$messageTimestamps.addFirst(System.currentTimeMillis());
             while (this.arborCore$messageTimestamps.size() > this.trimmedMessages.size()) {
-                this.arborCore$messageTimestamps.remove(this.arborCore$messageTimestamps.size() - 1);
+                this.arborCore$messageTimestamps.removeLast();
             }
         }
     }

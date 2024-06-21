@@ -1,8 +1,8 @@
 package dev.arbor.gtnn.mixin.gt;
 
-import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.material.ChemicalHelper;
+import com.gregtechceu.gtceu.api.material.material.Material;
+import com.gregtechceu.gtceu.api.tag.TagPrefix;
 import com.gregtechceu.gtceu.integration.GTOreByProduct;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,7 +18,7 @@ public abstract class GTOreByProductMixin {
     @Shadow(remap = false)
     protected abstract void addToOutputs(ItemStack stack);
 
-    @Inject(method = "addToOutputs(Lcom/gregtechceu/gtceu/api/data/chemical/material/Material;Lcom/gregtechceu/gtceu/api/data/tag/TagPrefix;I)V", at = @At("HEAD"), remap = false, cancellable = true)
+    @Inject(method = "addToOutputs(Lcom/gregtechceu/gtceu/api/material/material/Material;Lcom/gregtechceu/gtceu/api/tag/TagPrefix;I)V", at = @At("HEAD"), remap = false, cancellable = true)
     private void processDirtyDust(Material material, TagPrefix prefix, int size, CallbackInfo ci) {
         if (prefix == TagPrefix.dust) {
             var replace = ORE_REPLACEMENTS.getOrDefault(material, material);

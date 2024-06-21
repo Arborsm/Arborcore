@@ -1,8 +1,8 @@
 package dev.arbor.gtnn.mixin.gt;
 
-import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+import com.gregtechceu.gtceu.api.material.ChemicalHelper;
+import com.gregtechceu.gtceu.api.material.material.Material;
+import com.gregtechceu.gtceu.api.tag.TagPrefix;
 import com.gregtechceu.gtceu.data.recipe.generated.OreRecipeHandler;
 import dev.arbor.gtnn.GTNN;
 import net.minecraft.world.item.ItemStack;
@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Map;
 
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
-import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
+import static com.gregtechceu.gtceu.api.tag.TagPrefix.dust;
+import static com.gregtechceu.gtceu.data.material.GTMaterials.*;
 import static dev.arbor.gtnn.api.recipe.OresHelper.ORE_REPLACEMENTS;
 import static dev.arbor.gtnn.data.GTNNMaterials.*;
 
@@ -39,7 +39,7 @@ public class OreRecipeHandlerMixin {
 
     @Redirect(
             method = "processDirtyDust", remap = false,
-            at = @At(value = "INVOKE", target = "Lcom/gregtechceu/gtceu/api/data/chemical/ChemicalHelper;get(Lcom/gregtechceu/gtceu/api/data/tag/TagPrefix;Lcom/gregtechceu/gtceu/api/data/chemical/material/Material;)Lnet/minecraft/world/item/ItemStack;")
+            at = @At(value = "INVOKE", target = "Lcom/gregtechceu/gtceu/api/material/ChemicalHelper;get(Lcom/gregtechceu/gtceu/api/tag/TagPrefix;Lcom/gregtechceu/gtceu/api/material/material/Material;)Lnet/minecraft/world/item/ItemStack;")
     )
     private static ItemStack processDirtyDust(TagPrefix orePrefix, Material material) {
         Material replace = ORE_REPLACEMENTS.getOrDefault(material, material);
@@ -48,7 +48,7 @@ public class OreRecipeHandlerMixin {
 
     @Redirect(
             method = "processPureDust", remap = false,
-            at = @At(value = "INVOKE", target = "Lcom/gregtechceu/gtceu/api/data/chemical/ChemicalHelper;get(Lcom/gregtechceu/gtceu/api/data/tag/TagPrefix;Lcom/gregtechceu/gtceu/api/data/chemical/material/Material;)Lnet/minecraft/world/item/ItemStack;")
+            at = @At(value = "INVOKE", target = "Lcom/gregtechceu/gtceu/api/material/ChemicalHelper;get(Lcom/gregtechceu/gtceu/api/tag/TagPrefix;Lcom/gregtechceu/gtceu/api/material/material/Material;)Lnet/minecraft/world/item/ItemStack;")
     )
     private static ItemStack processPureDust(TagPrefix orePrefix, Material material) {
         Material replace = ORE_REPLACEMENTS.getOrDefault(material, material);
@@ -57,7 +57,7 @@ public class OreRecipeHandlerMixin {
 
     @Redirect(
             method = "processCrushedCentrifuged", remap = false,
-            at = @At(value = "INVOKE", target = "Lcom/gregtechceu/gtceu/api/data/chemical/ChemicalHelper;get(Lcom/gregtechceu/gtceu/api/data/tag/TagPrefix;Lcom/gregtechceu/gtceu/api/data/chemical/material/Material;)Lnet/minecraft/world/item/ItemStack;")
+            at = @At(value = "INVOKE", target = "Lcom/gregtechceu/gtceu/api/material/ChemicalHelper;get(Lcom/gregtechceu/gtceu/api/tag/TagPrefix;Lcom/gregtechceu/gtceu/api/material/material/Material;)Lnet/minecraft/world/item/ItemStack;")
     )
     private static ItemStack processCrushedCentrifuged(TagPrefix orePrefix, Material material) {
         Material replace = ORE_REPLACEMENTS.getOrDefault(material, material);

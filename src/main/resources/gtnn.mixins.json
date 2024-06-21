@@ -2,8 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "dev.arbor.gtnn.mixin",
-  "compatibilityLevel": "JAVA_17",
-  "refmap": "gtnn-refmap.json",
+  "compatibilityLevel": "JAVA_21",
   "plugin": "dev.arbor.gtnn.mixin.GTNNMixinPlugin",
   "mixins": [
     "create.CreateFanMixin",
@@ -17,13 +16,12 @@
     "gt.MaterialBuilderMixin",
     "gt.MaterialMixin",
     "gt.OreGeneratorMixin",
+    "gt.OreInitMixin",
     "gt.OreRecipeHandlerMixin",
     "mc.MinecraftServerMixin",
-    "mc.RecipeManagerMixin",
     "mc.WorldLoaderPackConfigMixin"
   ],
   "client": [
-    "client.ChatMixin",
     "client.ShimmerMixin",
     "client.ToastKiller",
     "client.ToastKiller$ToastInstance",

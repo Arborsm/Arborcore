@@ -1,11 +1,14 @@
 pluginManagement {
     repositories {
-        maven { url = "https://maven.fabricmc.net/" }
-        maven { url = "https://maven.architectury.dev/" }
-        maven { url = "https://maven.minecraftforge.net/" }
-        maven { url = "https://maven.quiltmc.org/repository/release" }
+        mavenLocal()
         gradlePluginPortal()
+        maven { url = 'https://maven.neoforged.net/releases' }
+        maven { url = "https://maven.quiltmc.org/repository/release" }
     }
+}
+
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.5.0'
 }
 
 dependencyResolutionManagement {
@@ -14,112 +17,112 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         // Minecraft Version
-        def minecraftVersion = "1.20.1"
+        def minecraftVersion = "1.21"
+        def minecraftVersionVeryOld = "1.20.1"
+        def minecraftVersionOld = "1.20.4"
+        def minecraftVersionOldish = "1.20.6"
 
         // Mod Dependencies Versions
         // Forge
-        def jeiVersion = "15.2.0.27"
-        def reiVersion = "12.0.684"
-        def emiVersion = "1.1.4"
-        def forgeVersion = "47.2.23"
-        def registrateForgeVersion = "MC1.20-1.3.3"
-        def createForgeVersion = "0.5.1.f-26"
-        def flywheelForgeVersion = "0.6.10-7"
-        def jadeForgeVersion = "11.7.1"
+        def jeiVersion = "19.0.0.1"
+        def reiVersion = "16.0.729"
+        def emiVersion = "1.1.7"
+
+        // NeoForge
+        def neoForgeVersion = "21.0.17-beta"
+        def registrateForgeVersion = "MC1.21-1.3.0+16"
+        def createForgeVersion = "0.5.1.d-9"
+        def flywheelForgeVersion = "0.6.9-5"
+        def jadeForgeVersion = "5366595"
+
         def botarium_version = "2.3.3"
         def ad_astra_version = "1.15.18"
         def resourcefullib_version = "2.1.23"
         def resourcefulconfig_version = "2.1.2"
-        def gtmVersion = "1.3.0"
-        def ldLibVersion = "1.0.25.p"
-        def shimmerVersion = "0.2.4"
+        def gtmVersion = "1.3.0-a"
 
         // Libs
-        def quiltMappingsVersion = "5"  // https://lambdaurora.dev/tools/import_quilt.html
-        def parchmentVersion = "2023.09.03" // https://parchmentmc.org/docs/getting-started
+        def parchmentVersion = "2024.06.02" // https://parchmentmc.org/docs/getting-started
         def shadowVersion = "7.1.2"
-        def architecturyPluginVersion = "3.4-SNAPSHOT"
-        def architecturyLoomVersion = "1.6-SNAPSHOT"
-        def vineFlowerVersion = "1.11.0"
+        def spotlessVersion = "6.25.0"
+        def vineFlowerVersion = "1.+"
         def macheteVersion = "1.+"
-        def configurationVersion = "2.2.0"
-        def mixinextrasVersion = "0.3.5"
-        def kotlinJemVersion = "1.8.22"
-        def kotlinPluginVersion = "1.8.22"
+        def configurationVersion = "2.2.6"
+        def ldLibVersion = "1.0.25.s"
+        def shimmerVersion = "0.2.4"
+        def neogradleVersion = "7.0.145"
+        def kotlinJemVersion = "2.0.0"
+        def kotlinPluginVersion = "1.9.20"
 
         forge {
-            version("forgeShortVersion", forgeVersion)
-            def minecraftForge = version("minecratfForge", "${minecraftVersion}-${forgeVersion}")
-            library("minecraftForge", "net.minecraftforge", "forge").versionRef(minecraftForge)
+            version("forgeShortVersion", neoForgeVersion)
+            def neoForge = version("neoForge", "${neoForgeVersion}")
+            library("neoForge", "net.neoforged", "neoforge").versionRef(neoForge)
 
             def ldLib = version("ldlib", ldLibVersion)
-            library("ldlib-forge", "com.lowdragmc.ldlib", "ldlib-forge-${minecraftVersion}").versionRef(ldLib)
+            library("ldlib-forge", "com.lowdragmc.ldlib", "ldlib-neoforge-${minecraftVersion}").versionRef(ldLib)
 
-            def shimmer = version("shimmer", "${minecraftVersion}-${shimmerVersion}")
+            def shimmer = version("shimmer", "${minecraftVersionVeryOld}-${shimmerVersion}")
             library("shimmer-forge", "com.lowdragmc.shimmer", "Shimmer-forge").versionRef(shimmer)
 
             def registrate = version("registrate", registrateForgeVersion)
             library("registrate", "com.tterrag.registrate", "Registrate").versionRef(registrate)
 
             def createForge = version("createForge", createForgeVersion)
-            library("createForge", "com.simibubi.create", "create-${minecraftVersion}").versionRef(createForge)
+            library("createForge", "com.simibubi.create", "create-${minecraftVersionVeryOld}").versionRef(createForge)
 
             def flywheel = version("flywheel", flywheelForgeVersion)
-            library("flywheel", "com.jozufozu.flywheel", "flywheel-forge-${minecraftVersion}").versionRef(flywheel)
+            library("flywheel", "com.jozufozu.flywheel", "flywheel-forge-${minecraftVersionVeryOld}").versionRef(flywheel)
 
             def jei = version("jei", jeiVersion)
             library("jei-common-api", "mezz.jei", "jei-${minecraftVersion}-common-api").versionRef(jei)
-            library("jei-forge-api", "mezz.jei", "jei-${minecraftVersion}-forge-api").versionRef(jei)
-            library("jei-forge-impl", "mezz.jei", "jei-${minecraftVersion}-forge").versionRef(jei)
+            library("jei-forge-api", "mezz.jei", "jei-${minecraftVersion}-neoforge-api").versionRef(jei)
+            library("jei-forge-impl", "mezz.jei", "jei-${minecraftVersion}-neoforge").versionRef(jei)
 
             def rei = version("rei", reiVersion)
-            library("rei-plugin", "me.shedaniel", "RoughlyEnoughItems-default-plugin-forge").versionRef(rei)
-            library("rei-api", "me.shedaniel", "RoughlyEnoughItems-api-forge").versionRef(rei)
-            library("rei-forge", "me.shedaniel", "RoughlyEnoughItems-forge").versionRef(rei)
+            library("rei-plugin", "me.shedaniel", "RoughlyEnoughItems-default-plugin-neoforge").versionRef(rei)
+            library("rei-api", "me.shedaniel", "RoughlyEnoughItems-api-neoforge").versionRef(rei)
+            library("rei-forge", "me.shedaniel", "RoughlyEnoughItems-neoforge").versionRef(rei)
 
             def emi = version("emi", emiVersion + "+" + minecraftVersion)
-            library("emi", "dev.emi", "emi-forge").versionRef(emi)
+            library("emi", "dev.emi", "emi-neoforge").versionRef(emi)
 
             def jade = version("jade", jadeForgeVersion)
-            library("jade", "maven.modrinth", "jade").versionRef(jade)
-
-            def mixinextras = version("mixinextras", mixinextrasVersion)
-            library("mixinextras-forge", "io.github.llamalad7", "mixinextras-forge").versionRef(mixinextras)
+            library("jade", "curse.maven", "jade-324717").versionRef(jade)
 
             def configuration = version("configuration", configurationVersion)
-            library("configuration", "dev.toma.configuration", "configuration-forge-1.20.1").versionRef(configuration)
+            library("configuration", "dev.toma", "configuration-neoforge-${minecraftVersion}").versionRef(configuration)
 
             def ad_astra = version("ad_astra", ad_astra_version)
             library("ad_astra", "earth.terrarium.adastra", "ad_astra-forge-1.20.1").versionRef(ad_astra)
 
             def botarium = version("botarium", botarium_version)
-            library("botarium", "earth.terrarium.botarium", "botarium-forge-${minecraftVersion}").versionRef(botarium)
+            library("botarium", "earth.terrarium.botarium", "botarium-forge-${minecraftVersionVeryOld}").versionRef(botarium)
 
             def resourcefullib = version("resourcefullib", resourcefullib_version)
-            library("resourcefullib", "com.teamresourceful.resourcefullib", "resourcefullib-forge-${minecraftVersion}").versionRef(resourcefullib)
+            library("resourcefullib", "com.teamresourceful.resourcefullib", "resourcefullib-forge-${minecraftVersionVeryOld}").versionRef(resourcefullib)
 
             def resourcefulconfig = version("resourcefulconfig", resourcefulconfig_version)
-            library("resourcefulconfig", "com.teamresourceful.resourcefulconfig", "resourcefulconfig-forge-${minecraftVersion}").versionRef(resourcefulconfig)
+            library("resourcefulconfig", "com.teamresourceful.resourcefulconfig", "resourcefulconfig-forge-${minecraftVersionVeryOld}").versionRef(resourcefulconfig)
 
             def gtm = version("gtm", gtmVersion)
             library("gtm", "com.gregtechceu.gtceu", "gtceu-${minecraftVersion}").versionRef(gtm)
         }
 
         libs {
-            version("quiltMappings", quiltMappingsVersion)
             version("parchment", parchmentVersion)
 
-            def minecraft = version("minecraft", minecraftVersion)
-            library("minecraft", "com.mojang", "minecraft").versionRef(minecraft)
+            version("minecraft", minecraftVersion)
+            version("minecraftOldish", minecraftVersionOldish)
+            version("minecraftOld", minecraftVersionOld)
+            version("minecraftVeryOld", minecraftVersionVeryOld)
+
 
             def shadow = version("shadow", shadowVersion)
             plugin("shadow", "com.github.johnrengelman.shadow").versionRef(shadow)
 
-            def architecturyPlugin = version("architectury", architecturyPluginVersion)
-            plugin("architectury", "architectury-plugin").versionRef(architecturyPlugin)
-
-            def architecturyLoom = version("architectury-loom", architecturyLoomVersion)
-            plugin("architectury-loom", "dev.architectury.loom").versionRef(architecturyLoom)
+            def spotless = version("spotless", spotlessVersion)
+            plugin("spotless", "com.diffplug.spotless").versionRef(spotless)
 
             def vineFlower = version("vineFlower", vineFlowerVersion)
             plugin("vineFlower", "io.github.juuxel.loom-vineflower").versionRef(vineFlower)
@@ -132,6 +135,9 @@ dependencyResolutionManagement {
 
             def kotlinPlugin = version("kotlin-plugin", kotlinPluginVersion)
             plugin("kotlin-plugin", "org.jetbrains.kotlin.plugin.serialization").versionRef(kotlinPlugin)
+
+            def neogradle = version("neogradle", neogradleVersion)
+            plugin("neogradle", "net.neoforged.gradle.userdev").versionRef(neogradle)
         }
     }
 }

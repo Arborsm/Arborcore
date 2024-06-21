@@ -1,14 +1,14 @@
 package dev.arbor.gtnn.data;
 
 import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.DustProperty;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.FluidProperty;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.OreProperty;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
-import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
-import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
+import com.gregtechceu.gtceu.api.fluid.FluidBuilder;
+import com.gregtechceu.gtceu.api.fluid.store.FluidStorageKeys;
+import com.gregtechceu.gtceu.api.material.material.Material;
+import com.gregtechceu.gtceu.api.material.material.info.MaterialIconSet;
+import com.gregtechceu.gtceu.api.material.material.properties.DustProperty;
+import com.gregtechceu.gtceu.api.material.material.properties.FluidProperty;
+import com.gregtechceu.gtceu.api.material.material.properties.OreProperty;
+import com.gregtechceu.gtceu.api.material.material.properties.PropertyKey;
 import dev.arbor.gtnn.GTNN;
 import dev.arbor.gtnn.GTNNIntegration;
 import dev.arbor.gtnn.api.recipe.GTNNBuilder;
@@ -16,7 +16,7 @@ import dev.arbor.gtnn.data.materials.*;
 import dev.arbor.gtnn.data.recipes.BrineChain;
 import net.minecraft.resources.ResourceLocation;
 
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.SHINY;
+import static com.gregtechceu.gtceu.api.material.material.info.MaterialIconSet.SHINY;
 
 public class GTNNMaterials extends Material {
     public static Material AndesiteAlloy;
