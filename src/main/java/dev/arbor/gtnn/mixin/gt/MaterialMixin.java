@@ -13,12 +13,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = Material.class, remap = false)
 public class MaterialMixin {
+
     @Final
     @Shadow
     private MaterialProperties properties;
 
     @Inject(method = "setProperty", at = @At("HEAD"), cancellable = true)
-    private <T extends IMaterialProperty<T>> void setProperties(PropertyKey<T> key, IMaterialProperty<T> value, CallbackInfo ci) {
+    private <T extends IMaterialProperty<T>> void setProperties(PropertyKey<T> key, IMaterialProperty<T> value,
+                                                                CallbackInfo ci) {
         if (properties.hasProperty(key)) ci.cancel();
     }
 }

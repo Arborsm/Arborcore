@@ -25,13 +25,17 @@ import java.util.function.Supplier;
 
 @Mixin(value = GTOreDefinition.class, remap = false)
 public abstract class GTOreDefinitionMixin {
+
     @Shadow
     private IntProvider clusterSize;
 
-    @Inject(method = "<init>(Lnet/minecraft/util/valueproviders/IntProvider;FILcom/gregtechceu/gtceu/api/worldgen/IWorldGenLayer;Ljava/util/Set;Lnet/minecraft/world/level/levelgen/placement/HeightRangePlacement;FLjava/util/function/Supplier;Lcom/gregtechceu/gtceu/api/worldgen/BiomeWeightModifier;Lcom/gregtechceu/gtceu/api/worldgen/generator/VeinGenerator;Ljava/util/List;)V", at = @At("TAIL"))
+    @Inject(method = "<init>(Lnet/minecraft/util/valueproviders/IntProvider;FILcom/gregtechceu/gtceu/api/worldgen/IWorldGenLayer;Ljava/util/Set;Lnet/minecraft/world/level/levelgen/placement/HeightRangePlacement;FLjava/util/function/Supplier;Lcom/gregtechceu/gtceu/api/worldgen/BiomeWeightModifier;Lcom/gregtechceu/gtceu/api/worldgen/generator/VeinGenerator;Ljava/util/List;)V",
+            at = @At("TAIL"))
     private void init(IntProvider clusterSize, float density, int weight, IWorldGenLayer layer,
-                      Set<ResourceKey<Level>> dimensionFilter, HeightRangePlacement range, float discardChanceOnAirExposure,
-                      Supplier<HolderSet<Biome>> biomes, BiomeWeightModifier biomeWeightModifier, VeinGenerator veinGenerator,
+                      Set<ResourceKey<Level>> dimensionFilter, HeightRangePlacement range,
+                      float discardChanceOnAirExposure,
+                      Supplier<HolderSet<Biome>> biomes, BiomeWeightModifier biomeWeightModifier,
+                      VeinGenerator veinGenerator,
                       List<IndicatorGenerator> indicatorGenerators, CallbackInfo ci) {
         final int min = (int) (clusterSize.getMinValue() * GTNN.INSTANCE.getServerConfig().gtOresMultiplyNum);
         final int max = (int) (clusterSize.getMaxValue() * GTNN.INSTANCE.getServerConfig().gtOresMultiplyNum);

@@ -13,6 +13,7 @@ import java.util.Map;
 
 @Mixin(value = FluidStorage.class, remap = false)
 public class FluidStorageMixin {
+
     @Shadow
     private Map<FluidStorageKey, FluidBuilder> toRegister;
 

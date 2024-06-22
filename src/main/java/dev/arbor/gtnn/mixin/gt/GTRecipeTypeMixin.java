@@ -9,8 +9,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GTRecipeTypes.class)
 public class GTRecipeTypeMixin {
+
     @Inject(method = "init", at = @At("HEAD"), remap = false)
-    private static void init(CallbackInfo ci){
+    private static void init(CallbackInfo ci) {
         GTNNRecipeTypes.INSTANCE.init();
     }
 }

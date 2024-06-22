@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @OnlyIn(Dist.CLIENT)
 @Mixin(ForgePlatformHelper.class)
 public class ShimmerMixin {
+
     @Inject(method = "isDevelopmentEnvironment()Z", at = @At("HEAD"), cancellable = true, remap = false)
     private void isDevelopmentEnvironment(CallbackInfoReturnable<Boolean> cir) {
         cir.setReturnValue(false);

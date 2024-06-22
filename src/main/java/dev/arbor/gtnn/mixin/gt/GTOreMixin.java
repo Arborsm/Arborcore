@@ -10,11 +10,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(OreDataLoader.class)
 public class GTOreMixin {
-    @Inject(method = "apply*", at = @At(value = "INVOKE", target = "Lcom/gregtechceu/gtceu/data/block/GTOres;init()V", shift = At.Shift.AFTER), remap = false)
+
+    @Inject(method = "apply*",
+            at = @At(value = "INVOKE",
+                    target = "Lcom/gregtechceu/gtceu/data/block/GTOres;init()V",
+                    shift = At.Shift.AFTER),
+            remap = false)
     private void postInit(CallbackInfo ci) {
         if (GTNNIntegration.INSTANCE.isAdAstraLoaded()) {
             GTOreVein.INSTANCE.oreRemove();
         }
     }
-
 }

@@ -15,10 +15,14 @@ import static dev.arbor.gtnn.api.recipe.OresHelper.ORE_REPLACEMENTS;
 
 @Mixin(GTOreByProduct.class)
 public abstract class GTOreByProductMixin {
+
     @Shadow(remap = false)
     protected abstract void addToOutputs(ItemStack stack);
 
-    @Inject(method = "addToOutputs(Lcom/gregtechceu/gtceu/api/material/material/Material;Lcom/gregtechceu/gtceu/api/tag/TagPrefix;I)V", at = @At("HEAD"), remap = false, cancellable = true)
+    @Inject(method = "addToOutputs(Lcom/gregtechceu/gtceu/api/material/material/Material;Lcom/gregtechceu/gtceu/api/tag/TagPrefix;I)V",
+            at = @At("HEAD"),
+            remap = false,
+            cancellable = true)
     private void processDirtyDust(Material material, TagPrefix prefix, int size, CallbackInfo ci) {
         if (prefix == TagPrefix.dust) {
             var replace = ORE_REPLACEMENTS.getOrDefault(material, material);

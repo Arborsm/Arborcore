@@ -10,18 +10,19 @@ import org.spongepowered.asm.mixin.*;
 @SuppressWarnings("all")
 @Mixin(FluidEmiStack.class)
 public abstract class FluidEmiStackMixin extends EmiStack {
+
     @Unique
     private ItemStack arborCore$stack;
     @Mutable
     @Shadow(remap = false)
     private @Final Fluid fluid;
 
-    protected FluidEmiStackMixin(Fluid fluid){
-        this.fluid =fluid;
+    protected FluidEmiStackMixin(Fluid fluid) {
+        this.fluid = fluid;
     }
 
     @Override
-    public ItemStack getItemStack(){
+    public ItemStack getItemStack() {
         if (GTNN.INSTANCE.getServerConfig().makesEMIBetter) {
             arborCore$stack = fluid.getBucket().getDefaultInstance();
             arborCore$stack.setCount(1);

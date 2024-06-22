@@ -16,9 +16,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @OnlyIn(Dist.CLIENT)
 @Mixin(ToastComponent.class)
 public class ToastKiller {
-    @Inject(method = "render",at = @At("HEAD"),cancellable = true)
-    public void killToasts(GuiGraphics p_283249_, CallbackInfo ci){
-        //Debug.Log("Killed a toast that tried to draw");
+
+    @Inject(method = "render", at = @At("HEAD"), cancellable = true)
+    public void killToasts(GuiGraphics p_283249_, CallbackInfo ci) {
+        // Debug.Log("Killed a toast that tried to draw");
         if (GTNN.INSTANCE.getClientConfig().killToast) ci.cancel();
     }
 
@@ -32,9 +33,10 @@ public class ToastKiller {
     static class ToastInstance<T extends Toast> { // inner class of ToastManager
 
         @Inject(method = "render", at = @At("HEAD"), cancellable = true)
-        public void render(int pScreenWidth, GuiGraphics pGuiGraphics, CallbackInfoReturnable<Boolean> cir) { // lie about drawing
+        public void render(int pScreenWidth, GuiGraphics pGuiGraphics, CallbackInfoReturnable<Boolean> cir) { // lie
+            // about
+            // drawing
             if (GTNN.INSTANCE.getClientConfig().killToast) cir.setReturnValue(true);
         }
     }
-
 }

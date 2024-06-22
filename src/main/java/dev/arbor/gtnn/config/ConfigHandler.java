@@ -8,13 +8,16 @@ import dev.toma.configuration.config.format.ConfigFormats;
 
 @Config(id = GTNN.MODID)
 public final class ConfigHandler {
-    public static ConfigHandler INSTANCE = Configuration.registerConfig(ConfigHandler.class, ConfigFormats.json()).getConfigInstance();
+
+    public static ConfigHandler INSTANCE = Configuration.registerConfig(ConfigHandler.class, ConfigFormats.json())
+            .getConfigInstance();
     @Configurable
     public ClientConfigs Client = new ClientConfigs();
     @Configurable
     public ServerConfigs Server = new ServerConfigs();
 
     public static class ServerConfigs {
+
         @Configurable
         @Configurable.Synchronized
         @Configurable.Comment({"Enable Harder Platinum Line", "Default: true"})
@@ -45,11 +48,13 @@ public final class ConfigHandler {
         @Configurable.Range(min = 1, max = 10)
         @Configurable.Comment({"* Times OreVeins in One Chunk", "Default: 1"})
         public int timesOreVeins = 1;
+
         ServerConfigs() {
         }
     }
 
     public static class ClientConfigs {
+
         @Configurable
         @Configurable.Comment({"Use Extra Heart Renderer", "Default: false"})
         public boolean extraHeartRenderer = false;
@@ -59,9 +64,8 @@ public final class ConfigHandler {
         @Configurable
         @Configurable.Comment({"Add Chat Animation", "Default: false"})
         public boolean addChatAnimation = false;
+
         ClientConfigs() {
         }
     }
-
 }
-

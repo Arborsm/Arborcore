@@ -19,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import static com.gregtechceu.gtceu.api.material.material.info.MaterialIconSet.SHINY;
 
 public class GTNNMaterials extends Material {
+
     public static Material AndesiteAlloy;
     public static Material Desh;
     public static Material Ostrum;
@@ -151,18 +152,20 @@ public class GTNNMaterials extends Material {
         material.setProperty(PropertyKey.DUST, new DustProperty());
     }
 
-    public static void addFluid(Material material){
+    public static void addFluid(Material material) {
         if (!material.hasProperty(PropertyKey.FLUID)) {
             material.setProperty(PropertyKey.FLUID, new FluidProperty());
         }
-        material.getProperty(PropertyKey.FLUID).getStorage().enqueueRegistration(FluidStorageKeys.LIQUID, new FluidBuilder());
+        material.getProperty(PropertyKey.FLUID).getStorage().enqueueRegistration(FluidStorageKeys.LIQUID,
+                new FluidBuilder());
     }
 
     public static void addGas(Material material) {
         if (!material.hasProperty(PropertyKey.FLUID)) {
             material.setProperty(PropertyKey.FLUID, new FluidProperty());
         }
-        material.getProperty(PropertyKey.FLUID).getStorage().enqueueRegistration(FluidStorageKeys.GAS, new FluidBuilder());
+        material.getProperty(PropertyKey.FLUID).getStorage().enqueueRegistration(FluidStorageKeys.GAS,
+                new FluidBuilder());
     }
 
     public static void addOre(Material... materials) {
@@ -180,6 +183,7 @@ public class GTNNMaterials extends Material {
     }
 
     public static class MaterialIcons {
+
         public static MaterialIconSet InfinityIcon = new MaterialIconSet("infinity", SHINY);
     }
 }

@@ -13,8 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
-@Mixin(value = EmiApi.class,remap = false)
+@Mixin(value = EmiApi.class, remap = false)
 public interface AEmiApi {
+
     @Invoker
     static void invokeSetPages(Map<EmiRecipeCategory, List<EmiRecipe>> recipes, EmiIngredient stack) {
     }

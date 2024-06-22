@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BedrockOreMinerMachine.class)
 public class BedrockOreMinerMachineMixin {
+
     @Unique
     private BedrockOreMinerLogic gtnn$LOGIC;
 

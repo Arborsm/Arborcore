@@ -26,39 +26,40 @@ public class OreRecipeHandlerMixin {
             ORE_REPLACEMENTS.putAll(Map.of(
                     Naquadah, NaquadahOxideMixture,
                     NaquadahEnriched, EnrichedNaquadahOxideMixture,
-                    Naquadria, NaquadriaOxideMixture
-            ));
+                    Naquadria, NaquadriaOxideMixture));
         }
         if (GTNN.INSTANCE.getServerConfig().enableHarderPlatinumLine) {
             ORE_REPLACEMENTS.putAll(Map.of(
                     Platinum, PlatinumMetal,
-                    Palladium, PalladiumMetal
-            ));
+                    Palladium, PalladiumMetal));
         }
     }
 
     @Redirect(
-            method = "processDirtyDust", remap = false,
-            at = @At(value = "INVOKE", target = "Lcom/gregtechceu/gtceu/api/material/ChemicalHelper;get(Lcom/gregtechceu/gtceu/api/tag/TagPrefix;Lcom/gregtechceu/gtceu/api/material/material/Material;)Lnet/minecraft/world/item/ItemStack;")
-    )
+            method = "processDirtyDust",
+            remap = false,
+            at = @At(value = "INVOKE",
+                    target = "Lcom/gregtechceu/gtceu/api/material/ChemicalHelper;get(Lcom/gregtechceu/gtceu/api/tag/TagPrefix;Lcom/gregtechceu/gtceu/api/material/material/Material;)Lnet/minecraft/world/item/ItemStack;"))
     private static ItemStack processDirtyDust(TagPrefix orePrefix, Material material) {
         Material replace = ORE_REPLACEMENTS.getOrDefault(material, material);
         return ChemicalHelper.get(dust, replace);
     }
 
     @Redirect(
-            method = "processPureDust", remap = false,
-            at = @At(value = "INVOKE", target = "Lcom/gregtechceu/gtceu/api/material/ChemicalHelper;get(Lcom/gregtechceu/gtceu/api/tag/TagPrefix;Lcom/gregtechceu/gtceu/api/material/material/Material;)Lnet/minecraft/world/item/ItemStack;")
-    )
+            method = "processPureDust",
+            remap = false,
+            at = @At(value = "INVOKE",
+                    target = "Lcom/gregtechceu/gtceu/api/material/ChemicalHelper;get(Lcom/gregtechceu/gtceu/api/tag/TagPrefix;Lcom/gregtechceu/gtceu/api/material/material/Material;)Lnet/minecraft/world/item/ItemStack;"))
     private static ItemStack processPureDust(TagPrefix orePrefix, Material material) {
         Material replace = ORE_REPLACEMENTS.getOrDefault(material, material);
         return ChemicalHelper.get(dust, replace);
     }
 
     @Redirect(
-            method = "processCrushedCentrifuged", remap = false,
-            at = @At(value = "INVOKE", target = "Lcom/gregtechceu/gtceu/api/material/ChemicalHelper;get(Lcom/gregtechceu/gtceu/api/tag/TagPrefix;Lcom/gregtechceu/gtceu/api/material/material/Material;)Lnet/minecraft/world/item/ItemStack;")
-    )
+            method = "processCrushedCentrifuged",
+            remap = false,
+            at = @At(value = "INVOKE",
+                    target = "Lcom/gregtechceu/gtceu/api/material/ChemicalHelper;get(Lcom/gregtechceu/gtceu/api/tag/TagPrefix;Lcom/gregtechceu/gtceu/api/material/material/Material;)Lnet/minecraft/world/item/ItemStack;"))
     private static ItemStack processCrushedCentrifuged(TagPrefix orePrefix, Material material) {
         Material replace = ORE_REPLACEMENTS.getOrDefault(material, material);
         return ChemicalHelper.get(dust, replace);
