@@ -1,5 +1,13 @@
 package dev.arbor.gtnn.data;
 
+import dev.arbor.gtnn.GTNN;
+import dev.arbor.gtnn.GTNNIntegration;
+import dev.arbor.gtnn.api.recipe.GTNNBuilder;
+import dev.arbor.gtnn.data.materials.*;
+import dev.arbor.gtnn.data.recipes.BrineChain;
+
+import net.minecraft.resources.ResourceLocation;
+
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.fluid.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluid.store.FluidStorageKeys;
@@ -9,12 +17,6 @@ import com.gregtechceu.gtceu.api.material.material.properties.DustProperty;
 import com.gregtechceu.gtceu.api.material.material.properties.FluidProperty;
 import com.gregtechceu.gtceu.api.material.material.properties.OreProperty;
 import com.gregtechceu.gtceu.api.material.material.properties.PropertyKey;
-import dev.arbor.gtnn.GTNN;
-import dev.arbor.gtnn.GTNNIntegration;
-import dev.arbor.gtnn.api.recipe.GTNNBuilder;
-import dev.arbor.gtnn.data.materials.*;
-import dev.arbor.gtnn.data.recipes.BrineChain;
-import net.minecraft.resources.ResourceLocation;
 
 import static com.gregtechceu.gtceu.api.material.material.info.MaterialIconSet.SHINY;
 

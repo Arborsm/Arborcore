@@ -1,14 +1,8 @@
 package dev.arbor.gtnn.mixin.gt;
 
-import com.gregtechceu.gtceu.GTCEu;
-import com.gregtechceu.gtceu.api.registry.GTRegistries;
-import com.gregtechceu.gtceu.api.worldgen.GTOreDefinition;
-import com.gregtechceu.gtceu.api.worldgen.WorldGeneratorUtils;
-import com.gregtechceu.gtceu.api.worldgen.ores.GeneratedVeinMetadata;
-import com.gregtechceu.gtceu.api.worldgen.ores.OreGenerator;
-import com.gregtechceu.gtceu.config.ConfigHolder;
 import dev.arbor.gtnn.GTNN;
 import dev.arbor.gtnn.mixin.misc.VeinConfiguration;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
@@ -16,6 +10,14 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.XoroshiroRandomSource;
 import net.minecraft.world.level.levelgen.placement.PlacementContext;
+
+import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.registry.GTRegistries;
+import com.gregtechceu.gtceu.api.worldgen.GTOreDefinition;
+import com.gregtechceu.gtceu.api.worldgen.WorldGeneratorUtils;
+import com.gregtechceu.gtceu.api.worldgen.ores.GeneratedVeinMetadata;
+import com.gregtechceu.gtceu.api.worldgen.ores.OreGenerator;
+import com.gregtechceu.gtceu.config.ConfigHolder;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

@@ -1,8 +1,9 @@
 package dev.arbor.gtnn.mixin.gt;
 
-import com.gregtechceu.gtceu.data.loader.OreDataLoader;
 import dev.arbor.gtnn.GTNNIntegration;
 import dev.arbor.gtnn.worldgen.GTOreVein;
+
+import com.gregtechceu.gtceu.data.loader.OreDataLoader;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -13,8 +14,8 @@ public class GTOreMixin {
 
     @Inject(method = "apply*",
             at = @At(value = "INVOKE",
-                    target = "Lcom/gregtechceu/gtceu/data/block/GTOres;init()V",
-                    shift = At.Shift.AFTER),
+                     target = "Lcom/gregtechceu/gtceu/data/block/GTOres;init()V",
+                     shift = At.Shift.AFTER),
             remap = false)
     private void postInit(CallbackInfo ci) {
         if (GTNNIntegration.INSTANCE.isAdAstraLoaded()) {

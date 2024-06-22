@@ -1,11 +1,7 @@
 package dev.arbor.gtnn.mixin.gt;
 
-import com.gregtechceu.gtceu.api.worldgen.BiomeWeightModifier;
-import com.gregtechceu.gtceu.api.worldgen.GTOreDefinition;
-import com.gregtechceu.gtceu.api.worldgen.IWorldGenLayer;
-import com.gregtechceu.gtceu.api.worldgen.generator.IndicatorGenerator;
-import com.gregtechceu.gtceu.api.worldgen.generator.VeinGenerator;
 import dev.arbor.gtnn.GTNN;
+
 import net.minecraft.core.HolderSet;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.IntProvider;
@@ -13,6 +9,12 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
+
+import com.gregtechceu.gtceu.api.worldgen.BiomeWeightModifier;
+import com.gregtechceu.gtceu.api.worldgen.GTOreDefinition;
+import com.gregtechceu.gtceu.api.worldgen.IWorldGenLayer;
+import com.gregtechceu.gtceu.api.worldgen.generator.IndicatorGenerator;
+import com.gregtechceu.gtceu.api.worldgen.generator.VeinGenerator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;

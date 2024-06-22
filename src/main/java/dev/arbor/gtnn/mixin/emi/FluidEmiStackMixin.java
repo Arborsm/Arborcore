@@ -1,10 +1,12 @@
 package dev.arbor.gtnn.mixin.emi;
 
 import dev.arbor.gtnn.GTNN;
-import dev.emi.emi.api.stack.EmiStack;
-import dev.emi.emi.api.stack.FluidEmiStack;
+
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
+
+import dev.emi.emi.api.stack.EmiStack;
+import dev.emi.emi.api.stack.FluidEmiStack;
 import org.spongepowered.asm.mixin.*;
 
 @SuppressWarnings("all")

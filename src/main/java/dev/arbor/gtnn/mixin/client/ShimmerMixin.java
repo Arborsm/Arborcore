@@ -1,8 +1,9 @@
 package dev.arbor.gtnn.mixin.client;
 
-import com.lowdragmc.shimmer.forge.platform.ForgePlatformHelper;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+
+import com.lowdragmc.shimmer.forge.platform.ForgePlatformHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

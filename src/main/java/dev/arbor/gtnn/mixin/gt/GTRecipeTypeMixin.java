@@ -1,7 +1,8 @@
 package dev.arbor.gtnn.mixin.gt;
 
-import com.gregtechceu.gtceu.data.recipe.GTRecipeTypes;
 import dev.arbor.gtnn.data.GTNNRecipeTypes;
+
+import com.gregtechceu.gtceu.data.recipe.GTRecipeTypes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
