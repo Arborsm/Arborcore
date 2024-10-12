@@ -19,6 +19,8 @@ class GTNNAddon : IGTAddon {
     }
 
     override fun initializeAddon() {
+        GTNNMaterialIconType.init()
+        GTNNItems.init()
         GTNN.LOGGER.info("GTNN Loaded!")
     }
 

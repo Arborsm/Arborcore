@@ -135,6 +135,11 @@ class ChemicalPlantMachine(holder: IMachineBlockEntity) : WorkableElectricMultib
                     "gtnn.multiblock.chemical_plant.tier", VNF[voltageTier + 1]
                 )
             )
+            components.add(
+                Component.translatable(
+                    "gtnn.multiblock.chemical_plant.chance", getChance()
+                )
+            )
         }
     }
 

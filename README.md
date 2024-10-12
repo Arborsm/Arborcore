@@ -40,3 +40,5 @@
 * Modify the Naquadah process from Magic-Sweepy
 
 * ToastKiller early code from [Methane](https://modrinth.com/mod/methane)
+
+* Thanks to [Gate Guardian](https://github.com/qwer523)

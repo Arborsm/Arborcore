@@ -19,6 +19,7 @@ object MaterialLang {
         tsl("tagprefix.moon_stone", "月岩%s矿石", "Moon Stone %s Ore")
         tsl("tagprefix.soul_soil", "含%s灵魂土", "Soul Soil %s Ore")
         tsl("tagprefix.venus_stone", "锃金岩%s矿石", "Venus Stone %s Ore")
+        tsl("tagprefix.catalyst", "%s催化剂", "%s Catalyst")
     }
 
 
@@ -43,7 +44,7 @@ object MaterialLang {
         translateMaterial(MethylHydrazine, "甲基肼")
         translateMaterial(UDMHRocketFuel, "H8N4C2O4火箭燃料")
         translateMaterial(UDMH, "偏二甲肼")
-        translateMaterial(OrangeMetalCatalyst, "橙色金属催化剂")
+        translateMaterial(OrangeMetal, "橙色金属")
         translateMaterial(PhthalicAnhydride, "邻苯二甲酸酐")
         translateMaterial(VanadiumPentoxide, "五氧化二钒")
         translateMaterial(BlackMatter, "黑物质")
@@ -88,7 +89,7 @@ object MaterialLang {
         translateMaterial(NaquadriaOxideMixture, "氧化超能硅岩混合物")
         translateMaterial(HexafluorideEnrichedNaquadahSolution, "六氟化富集硅岩溶液")
         translateMaterial(XenonHexafluoroEnrichedNaquadate, "六氟氙酸富集硅岩")
-        translateMaterial(PalladiumOnCarbon, "钯碳催化剂")
+        translateMaterial(PalladiumOnCarbon, "钯碳")
         translateMaterial(GoldTrifluoride, "三氟化金")
         translateMaterial(EnrichedNaquadahResidueSolution, "富集硅岩残余物溶液")
         translateMaterial(XenoauricFluoroantimonicAcid, "氟锑酸二氙")

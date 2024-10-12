@@ -32,6 +32,7 @@ import dev.arbor.gtnn.api.machine.multiblock.APartAbility
 import dev.arbor.gtnn.api.machine.multiblock.ChemicalPlantMachine
 import dev.arbor.gtnn.api.machine.multiblock.LargeNaquadahReactorMachine
 import dev.arbor.gtnn.api.machine.multiblock.NeutronActivatorMachine
+import dev.arbor.gtnn.api.machine.multiblock.part.CatalystHatchPartMachine
 import dev.arbor.gtnn.api.machine.multiblock.part.HighSpeedPipeBlock
 import dev.arbor.gtnn.api.machine.multiblock.part.NeutronAcceleratorMachine
 import dev.arbor.gtnn.api.machine.multiblock.part.NeutronSensorMachine
@@ -81,6 +82,15 @@ object GTNNMachines {
             .tooltips(Component.translatable("block.gtnn.neutron_sensor.tooltip1"))
             .tooltips(Component.translatable("block.gtnn.neutron_sensor.tooltip2")).register()
 
+    val CATALYST_HATCH: MachineDefinition = REGISTRATE
+        .machine("catalyst_hatch", ::CatalystHatchPartMachine)
+        .langValue("Catalyst Hatch")
+        .tier(IV)
+        .rotationState(RotationState.ALL)
+        .abilities(APartAbility.CATALYST)
+        .overlayTieredHullRenderer("catalyst_hatch")
+        .tooltips()
+        .register()
     //////////////////////////////////////
     //**********   Machine    **********//
     //////////////////////////////////////
@@ -146,7 +156,8 @@ object GTNNMachines {
                 .where("S", controller(blocks(definition.get()))).where(
                     "V",
                     APredicates.plantCasings().or(autoAbilities(*definition.recipeTypes))
-                        .or(autoAbilities(true, false, false)).or(abilities(PartAbility.INPUT_ENERGY))
+                        .or(autoAbilities(true, false, false))
+                        .or(abilities(PartAbility.INPUT_ENERGY)).or(abilities(APartAbility.CATALYST))
                         .or(abilities(PartAbility.IMPORT_ITEMS)).or(abilities(PartAbility.EXPORT_ITEMS))
                         .or(abilities(PartAbility.IMPORT_FLUIDS)).or(abilities(PartAbility.EXPORT_FLUIDS))
                 ).where("A", APredicates.plantCasings()).where("D", APredicates.pipeBlock()).where("C", heatingCoils())
@@ -154,7 +165,7 @@ object GTNNMachines {
         }.shapeInfos { definition ->
             val shapeInfo = mutableListOf<MultiblockShapeInfo>()
             val builder = MultiblockShapeInfo.builder()
-                .aisle("AAOSJAA", "A#####A", "A#####A", "A#####A", "A#####A", "A#####A", "AAAAAAA")
+                .aisle("AAOSJPA", "A#####A", "A#####A", "A#####A", "A#####A", "A#####A", "AAAAAAA")
                 .aisle("MBBBBBN", "#BBBBB#", "#######", "#######", "#######", "#BBBBB#", "AAAAAAA")
                 .aisle("KBBBBBL", "#BCCCB#", "##DDD##", "##CCC##", "##DDD##", "#BCCCB#", "AAAAAAA")
                 .aisle("ABBBBBA", "#BCCCB#", "##DDD##", "##CCC##", "##DDD##", "#BCCCB#", "AAAAAAA")
@@ -163,6 +174,7 @@ object GTNNMachines {
                 .aisle("AAAAAAA", "A#####A", "A#####A", "A#####A", "A#####A", "A#####A", "AAAAAAA")
                 .where('S', definition, Direction.NORTH).where('#', Blocks.AIR.defaultBlockState())
                 .where('J', GTMachines.MAINTENANCE_HATCH, Direction.NORTH)
+                .where('P', CATALYST_HATCH, Direction.NORTH)
             val shapeBlock = hashMapOf<Int, BlockState>()
             for (casing in BlockMaps.ALL_CP_CASINGS) {
                 shapeBlock[casing.key.tier + 9] = casing.value.get().defaultBlockState()

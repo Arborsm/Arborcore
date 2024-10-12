@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType
 import com.gregtechceu.gtceu.common.data.GTMaterials
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes
+import dev.arbor.gtnn.data.GTNNTagPrefix
 import dev.arbor.gtnn.data.GTNNMaterials
 import dev.arbor.gtnn.data.GTNNRecipeTypes
 import dev.arbor.gtnn.data.GTNNRecipes
@@ -47,7 +48,7 @@ object NaquadahLine {
 
         //  Palladium on Carbon + Gold Trifluoride + Xenon Hexafluoro Enriched Naquadate + Fluoroantimonic Acid + Hydrogen -> Enriched Naquadah Solution + Enriched Naquadah Residue Solution + Hydrofluoric Acid
         GTNNRecipeTypes.CHEMICAL_PLANT_RECIPES.recipeBuilder("enriched_naquadah_residue_solution")
-            .notConsumable(TagPrefix.dust, GTNNMaterials.PalladiumOnCarbon)
+            .inputItems(GTNNTagPrefix.catalyst, GTNNMaterials.PalladiumOnCarbon, 1)
             .inputItems(TagPrefix.dust, GTNNMaterials.GoldTrifluoride, 4)
             .inputFluids(GTNNMaterials.XenonHexafluoroEnrichedNaquadate.getFluid(1000))
             .inputFluids(GTMaterials.FluoroantimonicAcid.getFluid(1000))
@@ -63,7 +64,7 @@ object NaquadahLine {
         GTRecipeTypes.MIXER_RECIPES.recipeBuilder("palladium_on_carbon")
             .inputItems(TagPrefix.dust, GTMaterials.Carbon)
             .inputItems(TagPrefix.dust, GTMaterials.Palladium)
-            .outputItems(TagPrefix.dust, GTNNMaterials.PalladiumOnCarbon)
+            .outputItems(GTNNTagPrefix.catalyst, GTNNMaterials.PalladiumOnCarbon)
             .circuitMeta(32)
             .duration(GTNNRecipes.dur(8.0)).EUt(GTValues.VA[GTValues.HV].toLong()).save(consumer)
 

@@ -10,6 +10,7 @@ import com.gregtechceu.gtceu.common.data.GTMaterials
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes
 import com.gregtechceu.gtceu.data.recipe.CustomTags
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper
+import dev.arbor.gtnn.data.GTNNTagPrefix
 import dev.arbor.gtnn.api.recipe.PlantCasingCondition
 import dev.arbor.gtnn.data.GTNNMachines
 import dev.arbor.gtnn.data.GTNNMaterials
@@ -123,8 +124,7 @@ object RocketFuel {
         GTRecipeTypes.MIXER_RECIPES.recipeBuilder("orange_metal_catalyst")
             .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Vanadium, 1))
             .inputItems(ChemicalHelper.get(TagPrefix.dust, GTMaterials.Palladium, 1))
-            .outputItems(ChemicalHelper.get(TagPrefix.dust, GTNNMaterials.OrangeMetalCatalyst, 64))
-            .outputItems(ChemicalHelper.get(TagPrefix.dust, GTNNMaterials.OrangeMetalCatalyst, 32))
+            .outputItems(ChemicalHelper.get(GTNNTagPrefix.catalyst, GTNNMaterials.OrangeMetal, 1))
             .circuitMeta(32)
             .duration(GTNNRecipes.dur(8.0)).EUt(GTValues.VA[GTValues.HV].toLong()).save(provider)
 
@@ -132,7 +132,7 @@ object RocketFuel {
             .addCondition(GTNNRecipes.setPlantCasing(PlantCasingCondition.ALUMINIUM))
             .inputFluids(GTNNMaterials.EthylAnthraQuinone.getFluid(1000))
             .inputFluids(GTMaterials.Hydrogen.getFluid(2000))
-            .chancedInput(ChemicalHelper.get(TagPrefix.dust, GTNNMaterials.OrangeMetalCatalyst, 1), 5000, -1000)
+            .inputItems(ChemicalHelper.get(GTNNTagPrefix.catalyst, GTNNMaterials.OrangeMetal, 1))
             .outputFluids(GTNNMaterials.EthylAnthraHydroQuinone.getFluid(1000))
             .circuitMeta(4)
             .duration(GTNNRecipes.dur(40.0)).EUt(GTValues.VA[GTValues.MV].toLong()).save(provider)

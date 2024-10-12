@@ -8,7 +8,7 @@ import java.util.function.Supplier
 class APartAbility(name: String) : PartAbility(name) {
     companion object {
         val NEUTRON_ACCELERATOR = PartAbility("neutron_accelerator")
-
+        val CATALYST: PartAbility = PartAbility("catalyst")
         val NEUTRON_SENSOR = PartAbility("neutron_sensor")
 
         fun <T> getOrDefault(value: T, defaultSupplier: Supplier<T>): T {

@@ -39,7 +39,7 @@ public class GTNNMaterials extends Material {
     public static Material MethylHydrazine;
     public static Material UDMHRocketFuel;
     public static Material UDMH;
-    public static Material OrangeMetalCatalyst;
+    public static Material OrangeMetal;
     public static Material PhthalicAnhydride;
     public static Material VanadiumPentoxide;
     public static Material BlackMatter;

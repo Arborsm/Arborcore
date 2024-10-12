@@ -341,6 +341,11 @@ object SelfRecipes {
     }
 
     private fun machineRecipes(provider: Consumer<FinishedRecipe>) {
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("catalyst_hatch")
+            .inputItems(CustomTags.MV_CIRCUITS)
+            .inputItems(GTMachines.ITEM_IMPORT_BUS[GTValues.MV])
+            .outputItems(GTNNMachines.CATALYST_HATCH)
+            .EUt(GTValues.VA[GTValues.MV].toLong()).duration(GTNNRecipes.dur(15.0)).save(provider)
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("large_naquadah_reactor_casing")
             .inputItems(GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.asItem())
             .inputItems(TagPrefix.wireGtHex, GTMaterials.IndiumTinBariumTitaniumCuprate, 4)

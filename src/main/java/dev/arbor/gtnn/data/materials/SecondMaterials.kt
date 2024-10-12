@@ -61,8 +61,8 @@ object SecondMaterials {
         UDMH =
             Builder("udmh").fluid().color(0x050543).iconSet(MaterialIconSet.DULL).buildAndRegister()
 
-        OrangeMetalCatalyst =
-            Builder("orange_metal_catalyst").dust().color(0xfa7e23).iconSet(MaterialIconSet.ROUGH)
+        OrangeMetal =
+            Builder("orange_metal").dust().color(0xfa7e23).iconSet(MaterialIconSet.ROUGH)
                 .buildAndRegister()
 
         PhthalicAnhydride =

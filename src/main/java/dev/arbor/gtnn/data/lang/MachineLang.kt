@@ -17,6 +17,7 @@ object MachineLang {
         tsl("block.gtnn.exxonmobil_chemical_plant", "埃克森美孚化工厂")
         tsl("block.gtnn.neutron_activator", "中子活化器")
         tsl("block.gtnn.large_naquadah_reactor", "大型硅岩发电堆")
+        tsl("block.gtnn.catalyst_hatch",  "催化剂仓")
         tsl("gtceu.chemical_plant", "化工厂", "Chemical Plant")
         tsl("gtceu.neutron_activator", "中子活化", "Neutron Activator")
         tsl("gtceu.naquadah_reactor", "硅岩发电", "Naquadah Reactor")
@@ -44,7 +45,8 @@ object MachineLang {
             "§o§7Heavy industry, right at your doorstep now!"
         )
         tsl("gtnn.multiblock.chemical_plant.tooltip2", "§6线圈：§e+50%§6 速度/级", "§6Coil：§e+50%§6 speed/tier")
-        tsl("gtnn.multiblock.chemical_plant.tooltip3", "§b管道方块：§e+2§b 并行/级", "§bPipe：§e+2§b parallel/tier")
+        tsl("gtnn.multiblock.chemical_plant.tooltip3",
+            "§b管道方块：§e+2§b 并行 及 §e-20%§b 催化剂消耗概率/级", "§bPipe：§e+2§b parallel and §e-20%§b catalyst consumption/tier")
         tsl(
             "gtnn.multiblock.chemical_plant.tooltip4",
             "§5机械方块：配方电压支持等级",
@@ -58,6 +60,7 @@ object MachineLang {
         tsl("gtnn.multiblock.chemical_plant.parallel_level", "§5并行: %s", "§bParallel: %s")
         tsl("gtnn.multiblock.chemical_plant.heating_coil", "§6提速: %s%%", "§6Speed: %s%%")
         tsl("gtnn.multiblock.chemical_plant.tier", "§e配方电压最大支持: %s", "§eRecipe voltage maximum support: %s")
+        tsl("gtnn.multiblock.chemical_plant.chance", "§6催化剂消耗概率: %s%%", "§6Catalyst consumption probability: %s%%")
         tsl(
             "gtnn.machine.neutron_accelerator.tooltip1",
             "§o§7输入EU，加速中子!",

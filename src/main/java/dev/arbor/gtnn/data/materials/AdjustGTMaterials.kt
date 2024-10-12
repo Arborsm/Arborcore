@@ -6,7 +6,9 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.OreProperty
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey
 import com.gregtechceu.gtceu.common.data.GTMaterials.*
 import dev.arbor.gtnn.GTNN.getServerConfig
+import dev.arbor.gtnn.api.item.properties.CatalystProperty
 import dev.arbor.gtnn.data.GTNNMaterials.*
+import dev.arbor.gtnn.data.GTNNPropertyKeys.CATALYST
 
 object AdjustGTMaterials {
     fun init() {
@@ -40,6 +42,9 @@ object AdjustGTMaterials {
         addFluid(Caesium)
         addFluid(AmmoniumChloride)
         addDust(Praseodymium)
+
+        PalladiumOnCarbon.setProperty(CATALYST, CatalystProperty(50))
+        OrangeMetal.setProperty(CATALYST, CatalystProperty(100))
     }
 
     private fun adjustOres() {

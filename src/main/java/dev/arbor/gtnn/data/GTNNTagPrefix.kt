@@ -1,8 +1,10 @@
 package dev.arbor.gtnn.data
 
+import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconType
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix
 import dev.arbor.gtnn.GTNNIntegration
 import dev.arbor.gtnn.api.tool.StringTools.rl
+import dev.arbor.gtnn.data.materials.GTNNChemicalItems
 import earth.terrarium.adastra.common.registry.ModBlocks
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.BlockTags
@@ -79,6 +81,15 @@ object GTNNTagPrefix {
             )
     }
 
+    val catalyst: TagPrefix = TagPrefix("catalyst")
+        .langValue("%s Catalyst")
+        .defaultTagPath("catalyst/%s")
+        .unformattedTagPath("catalyst")
+        .itemTable { GTNNChemicalItems.CATALYST_ITEMS }
+        .materialAmount(-1)
+        .materialIconType(GTNNMaterialIconType.catalyst)
+        .unificationEnabled(true)
+
     fun init() {
         if (GTNNIntegration.isAdAstraLoaded()) {
             oreMoonStone
@@ -94,4 +105,10 @@ object GTNNTagPrefix {
     private fun String.ad(): ResourceLocation {
         return ResourceLocation("ad_astra", this)
     }
+}
+
+object GTNNMaterialIconType{
+    val catalyst: MaterialIconType = MaterialIconType("catalyst")
+
+    fun init() {}
 }
