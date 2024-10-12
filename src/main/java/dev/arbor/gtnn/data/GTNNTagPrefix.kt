@@ -81,6 +81,7 @@ object GTNNTagPrefix {
             )
     }
 
+    @JvmStatic
     val catalyst: TagPrefix = TagPrefix("catalyst")
         .langValue("%s Catalyst")
         .defaultTagPath("catalyst/%s")
