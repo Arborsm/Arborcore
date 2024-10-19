@@ -43,7 +43,6 @@ object AdjustGTMaterials {
         addFluid(AmmoniumChloride)
         addDust(Praseodymium)
 
-        PalladiumOnCarbon.setProperty(CATALYST, CatalystProperty(50))
         OrangeMetal.setProperty(CATALYST, CatalystProperty(100))
     }
 

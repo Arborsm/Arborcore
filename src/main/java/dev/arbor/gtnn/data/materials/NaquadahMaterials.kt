@@ -6,7 +6,9 @@ import com.gregtechceu.gtceu.api.fluids.FluidBuilder
 import com.gregtechceu.gtceu.api.fluids.attribute.FluidAttributes
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys
 import com.gregtechceu.gtceu.common.data.GTMaterials
+import dev.arbor.gtnn.api.item.properties.CatalystProperty
 import dev.arbor.gtnn.data.GTNNMaterials.*
+import dev.arbor.gtnn.data.GTNNPropertyKeys.CATALYST
 
 object NaquadahMaterials {
     fun init() {
@@ -112,5 +114,7 @@ object NaquadahMaterials {
             Builder("acidic_naquadria_caesiumfluoride").fluid().color(0x75EB00).components(
                 GTMaterials.Naquadria, 1, GTMaterials.Fluorine, 3, GTMaterials.Caesium, 1, GTMaterials.Sulfur, 2, GTMaterials.Oxygen, 8
             ).flags(MaterialFlags.DISABLE_DECOMPOSITION).buildAndRegister().setFormula("*Nq*F2CsF(SO4)2", true)
+
+        PalladiumOnCarbon.setProperty(CATALYST, CatalystProperty(50))
     }
 }
