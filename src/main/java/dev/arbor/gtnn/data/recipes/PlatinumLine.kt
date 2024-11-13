@@ -6,7 +6,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.stack.UnificationEntry
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys
 import com.gregtechceu.gtceu.api.item.tool.GTToolType
-import com.gregtechceu.gtceu.common.data.GCyMRecipeTypes
+import com.gregtechceu.gtceu.common.data.GCYMRecipeTypes
 import com.gregtechceu.gtceu.common.data.GTMaterials
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper
@@ -671,7 +671,7 @@ object PlatinumLine {
     }
 
     private fun remove(provider: Consumer<FinishedRecipe>) {
-        GCyMRecipeTypes.ALLOY_BLAST_RECIPES.recipeBuilder("sodium_pyrosulfate").save(provider)
+        GCYMRecipeTypes.ALLOY_BLAST_RECIPES.recipeBuilder("sodium_pyrosulfate").save(provider)
         GTRecipeTypes.EXTRACTOR_RECIPES.recipeBuilder("extract_osmium_tetroxide_dust").save(provider)
         GTRecipeTypes.ELECTROLYZER_RECIPES.recipeBuilder("raw_platinum_separation").save(provider)
         GTRecipeTypes.DISTILLERY_RECIPES.recipeBuilder("acidic_osmium_solution_separation_to_hydrochloric_acid")

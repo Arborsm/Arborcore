@@ -347,7 +347,7 @@ object SelfRecipes {
             .outputItems(GTNNMachines.CATALYST_HATCH)
             .EUt(GTValues.VA[GTValues.MV].toLong()).duration(GTNNRecipes.dur(15.0)).save(provider)
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("large_naquadah_reactor_casing")
-            .inputItems(GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.asItem())
+            .inputItems(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.asItem())
             .inputItems(TagPrefix.wireGtHex, GTMaterials.IndiumTinBariumTitaniumCuprate, 4)
             .inputItems(GTItems.BATTERY_LUV_VANADIUM.asStack(1))
             .inputItems(GTItems.ROBOT_ARM_EV.asStack(4))

@@ -8,7 +8,7 @@ import com.gregtechceu.gtceu.api.recipe.logic.OCResult
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifierList
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes
-import com.gregtechceu.gtceu.common.data.machines.GCyMMachines
+import com.gregtechceu.gtceu.common.data.machines.GCYMMachines
 import dev.arbor.gtnn.data.GTNNRecipeTypes
 import net.minecraft.network.chat.Component
 
@@ -21,7 +21,7 @@ object ModifyMachines {
     }
 
     private fun modifyGTAssembly() {
-        val largeAssembler = GCyMMachines.LARGE_ASSEMBLER
+        val largeAssembler = GCYMMachines.LARGE_ASSEMBLER
         val gtRecipeTypes = largeAssembler.recipeTypes.toMutableList()
         gtRecipeTypes.add(GTNNRecipeTypes.PRECISION_ASSEMBLY_RECIPES)
         val gtRecipeTypesArray = gtRecipeTypes.toTypedArray()

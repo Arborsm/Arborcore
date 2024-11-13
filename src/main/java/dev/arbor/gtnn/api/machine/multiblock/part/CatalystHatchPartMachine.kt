@@ -3,24 +3,25 @@ package dev.arbor.gtnn.api.machine.multiblock.part
 import com.gregtechceu.gtceu.api.GTValues
 import com.gregtechceu.gtceu.api.capability.recipe.IO
 import com.gregtechceu.gtceu.api.gui.GuiTextures
+import com.gregtechceu.gtceu.api.gui.widget.SlotWidget
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity
 import com.gregtechceu.gtceu.api.machine.TickableSubscription
 import com.gregtechceu.gtceu.api.machine.multiblock.part.TieredIOPartMachine
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableItemStackHandler
 import com.gregtechceu.gtceu.api.recipe.GTRecipe
+import com.gregtechceu.gtceu.api.transfer.item.CustomItemStackHandler
 import com.lowdragmc.lowdraglib.gui.texture.ResourceTexture
 import com.lowdragmc.lowdraglib.gui.widget.ImageWidget
-import com.lowdragmc.lowdraglib.gui.widget.SlotWidget
 import com.lowdragmc.lowdraglib.gui.widget.Widget
 import com.lowdragmc.lowdraglib.gui.widget.WidgetGroup
-import com.lowdragmc.lowdraglib.misc.ItemStackTransfer
-import com.lowdragmc.lowdraglib.side.item.IItemTransfer
 import com.lowdragmc.lowdraglib.syncdata.ISubscription
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder
 import dev.arbor.gtnn.api.item.behaviors.CatalystBehavior
 import dev.arbor.gtnn.api.machine.multiblock.ChemicalPlantMachine
 import net.minecraft.MethodsReturnNonnullByDefault
+import net.minecraft.core.NonNullList
+import net.minecraft.world.item.ItemStack
 import net.minecraft.world.item.crafting.Ingredient
 import java.util.function.Function
 import javax.annotation.ParametersAreNonnullByDefault
@@ -29,9 +30,10 @@ import kotlin.math.sqrt
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-class CatalystHatchPartMachine(holder : IMachineBlockEntity) : TieredIOPartMachine(holder, GTValues.IV, IO.IN) {
+class CatalystHatchPartMachine(holder: IMachineBlockEntity) : TieredIOPartMachine(holder, GTValues.IV, IO.IN) {
     @Persisted
-    val buffer : NotifiableItemStackHandler = NotifiableItemStackHandler(this, 16, IO.NONE, IO.BOTH)
+    val buffer: NotifiableItemStackHandler = NotifiableItemStackHandler(this, 16, IO.NONE, IO.BOTH)
+
     @Persisted
     val inventory: NotifiableItemStackHandler = createInventory()
     private var bufferSubs: ISubscription? = null
@@ -57,30 +59,30 @@ class CatalystHatchPartMachine(holder : IMachineBlockEntity) : TieredIOPartMachi
     }
 
     private fun createInventory(): NotifiableItemStackHandler {
-        return object : NotifiableItemStackHandler(
-            this, 16, IO.IN, IO.OUT,
-            Function { slots: Int? ->
-                object : ItemStackTransfer(slots!!) {
-                    override fun getSlotLimit(slot: Int): Int {
-                        return 1
-                    }
+        return object : NotifiableItemStackHandler(this, 16, IO.IN, IO.OUT, Function { slots: Int? ->
+            object : CustomItemStackHandler(slots!!) {
+                override fun getSlotLimit(slot: Int): Int {
+                    return 1
                 }
-            }) {
+            }
+        }) {
             override fun getSlotNames(): Set<String> {
                 return setOf(CATALYST)
             }
 
             override fun handleRecipeInner(
-                io: IO,
-                recipe: GTRecipe,
-                left: MutableList<Ingredient>,
-                slotName: String?,
-                simulate: Boolean
+                io: IO, recipe: GTRecipe, left: MutableList<Ingredient>, slotName: String?, simulate: Boolean
             ): List<Ingredient>? {
                 if (io != handlerIO) return left
                 if (slotName != null && slotName != CATALYST) return left
 
-                val capability = if (simulate) storage.copy() else storage
+                val capability = if (simulate) {
+                    val items = NonNullList.create<ItemStack>()
+                    for (i in 0 until storage.slots){
+                        items.add(storage.getStackInSlot(i))
+                    }
+                    CustomItemStackHandler(items)
+                } else storage
                 val iterator = left.iterator()
                 if (io == IO.IN) {
                     while (iterator.hasNext()) {
@@ -172,14 +174,24 @@ class CatalystHatchPartMachine(holder : IMachineBlockEntity) : TieredIOPartMachi
     }
 
     private fun addSlots(
-        container: WidgetGroup, handler: IItemTransfer, x: Int, @Suppress("SameParameterValue") y: Int, canPutItems: Boolean
+        container: WidgetGroup,
+        handler: NotifiableItemStackHandler,
+        x: Int,
+        @Suppress("SameParameterValue") y: Int,
+        canPutItems: Boolean
     ) {
         var index = 0
         for (j in 0..3) {
             for (i in 0..3) {
                 container.addWidget(
-                    SlotWidget(handler, index++, x + i * 18, y + j * 18, true, canPutItems)
-                        .setBackground(GuiTextures.SLOT)
+                    SlotWidget(
+                        handler,
+                        index++,
+                        x + i * 18,
+                        y + j * 18,
+                        true,
+                        canPutItems
+                    ).setBackground(GuiTextures.SLOT)
                 )
             }
         }
@@ -208,7 +220,8 @@ class CatalystHatchPartMachine(holder : IMachineBlockEntity) : TieredIOPartMachi
     }
 
     companion object {
-        val MANAGED_FIELD_HOLDER = ManagedFieldHolder(CatalystHatchPartMachine::class.java, TieredIOPartMachine.MANAGED_FIELD_HOLDER)
+        val MANAGED_FIELD_HOLDER =
+            ManagedFieldHolder(CatalystHatchPartMachine::class.java, TieredIOPartMachine.MANAGED_FIELD_HOLDER)
         val SMALL_ARROW_OVERLAY = ResourceTexture("gtnn:textures/gui/arrows/small_arrow_overlay.png")
         const val CATALYST: String = "catalyst"
     }

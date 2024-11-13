@@ -14,7 +14,6 @@ import com.gregtechceu.gtceu.api.recipe.logic.OCParams
 import com.gregtechceu.gtceu.api.recipe.logic.OCResult
 import com.gregtechceu.gtceu.common.data.GTMaterials
 import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine
-import com.lowdragmc.lowdraglib.side.fluid.FluidStack
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder
 import dev.arbor.gtnn.data.GTNNMaterials
@@ -23,6 +22,7 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectMap
 import it.unimi.dsi.fastutil.longs.Long2ObjectMaps
 import net.minecraft.MethodsReturnNonnullByDefault
 import net.minecraft.world.level.material.Fluid
+import net.minecraftforge.fluids.FluidStack
 import javax.annotation.ParametersAreNonnullByDefault
 
 @ParametersAreNonnullByDefault
@@ -66,7 +66,7 @@ class LargeNaquadahReactorMachine(holder: IMachineBlockEntity) : WorkableElectri
             if (io == IO.IN || io == IO.BOTH) {
                 for (i in tank.storages) {
                     val fluid = i.fluid
-                    if (i.fluid == FluidStack.empty()) continue
+                    if (i.fluid == FluidStack.EMPTY) continue
                     checkLockFluid(machine, fluid)
                     active(machine, fluid, duration)
                     if (cool(fluid, duration)) machine.hasCool = true
@@ -178,6 +178,7 @@ class LargeNaquadahReactorMachine(holder: IMachineBlockEntity) : WorkableElectri
         private val MANAGED_FIELD_HOLDER =
             ManagedFieldHolder(LargeNaquadahReactorMachine::class.java, WorkableMultiblockMachine.MANAGED_FIELD_HOLDER)
 
+        @Suppress("UNUSED_PARAMETER")
         fun modifyRecipe(machine: MetaMachine, recipe: GTRecipe, ocParams: OCParams, ocResult: OCResult): GTRecipe? {
             if (recipe.recipeType != GTNNRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES) return null
             if (machine is LargeNaquadahReactorMachine) {

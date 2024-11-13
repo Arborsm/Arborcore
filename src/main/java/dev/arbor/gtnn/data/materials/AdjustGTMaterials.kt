@@ -15,7 +15,7 @@ object AdjustGTMaterials {
         adjustOres()
         Neutronium.setProperty(
             PropertyKey.BLAST,
-            BlastProperty(9000, BlastProperty.GasTier.HIGHEST, 491250, 144 * 20)
+            BlastProperty(9000, BlastProperty.GasTier.HIGHEST, 491250, 144 * 20, -1, -1)
         )
         NaquadahEnriched.addFlags(GENERATE_BOLT_SCREW)
         Europium.addFlags(GENERATE_BOLT_SCREW)

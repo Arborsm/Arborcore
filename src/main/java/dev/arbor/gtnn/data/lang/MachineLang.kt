@@ -59,8 +59,8 @@ object MachineLang {
         )
         tsl("gtnn.multiblock.chemical_plant.parallel_level", "§5并行: %s", "§bParallel: %s")
         tsl("gtnn.multiblock.chemical_plant.heating_coil", "§6提速: %s%%", "§6Speed: %s%%")
-        tsl("gtnn.multiblock.chemical_plant.tier", "§e配方电压最大支持: %s", "§eRecipe voltage maximum support: %s")
-        tsl("gtnn.multiblock.chemical_plant.chance", "§6催化剂消耗概率: %s%%", "§6Catalyst consumption probability: %s%%")
+        tsl("gtnn.multiblock.chemical_plant.tier", "§e配方电压最大支持: %s", "§eRecipe voltage maximum support:\n%s")
+        tsl("gtnn.multiblock.chemical_plant.chance", "§6催化剂消耗概率: %s%%", "§6Catalyst consumption probability:\n%s%%")
         tsl(
             "gtnn.machine.neutron_accelerator.tooltip1",
             "§o§7输入EU，加速中子!",

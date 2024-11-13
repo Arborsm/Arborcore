@@ -7,10 +7,10 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipe
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper
 import com.gregtechceu.gtceu.api.recipe.logic.OCParams
 import com.gregtechceu.gtceu.api.recipe.logic.OCResult
-import it.unimi.dsi.fastutil.ints.Int2LongFunction
+import it.unimi.dsi.fastutil.ints.Int2IntFunction
 
 class GTNNGeneratorMachine(
-    holder: IMachineBlockEntity, tier: Int, name: String, tankScalingFunction: Int2LongFunction, vararg args: Any
+    holder: IMachineBlockEntity, tier: Int, name: String, tankScalingFunction: Int2IntFunction, vararg args: Any
 ) : SimpleGeneratorMachine(holder, tier, tankScalingFunction, args) {
     private val efficiency = getEfficiency(tier, name)
 
@@ -23,6 +23,7 @@ class GTNNGeneratorMachine(
             }
         }
 
+        @Suppress("UNUSED_PARAMETER")
         fun nonParallel(machine: MetaMachine, recipe: GTRecipe, ocParams: OCParams, ocResult: OCResult): GTRecipe? {
             if (machine is GTNNGeneratorMachine) {
                 val eut = RecipeHelper.getOutputEUt(recipe)

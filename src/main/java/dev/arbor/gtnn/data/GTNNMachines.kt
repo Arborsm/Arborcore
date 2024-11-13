@@ -258,7 +258,7 @@ object GTNNMachines {
             .recipeModifiers(GTRecipeModifiers.DEFAULT_ENVIRONMENT_REQUIREMENT,
                 GTRecipeModifiers.PARALLEL_HATCH,
                 GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
-            .appearanceBlock(GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
+            .appearanceBlock(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING)
             .pattern { definition ->
                 FactoryBlockPattern.start()
                     .aisle("XXX", "CCC", "CCC", "CCC", "XXX")
@@ -266,7 +266,7 @@ object GTNNMachines {
                     .aisle("XSX", "CCC", "CCC", "CCC", "XXX")
                     .where('S', controller(blocks(definition.block)))
                     .where(
-                        'X', blocks(GCyMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()).setMinGlobalLimited(9)
+                        'X', blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()).setMinGlobalLimited(9)
                             .or(autoAbilities(*definition.recipeTypes))
                             .or(autoAbilities(true, false, true))
                     )

@@ -16,7 +16,7 @@ import com.gregtechceu.gtceu.common.data.GTRecipeModifiers
 import com.gregtechceu.gtceu.utils.FormattingUtil
 import dev.arbor.gtnn.GTNN
 import dev.arbor.gtnn.GTNNRegistries
-import it.unimi.dsi.fastutil.ints.Int2LongFunction
+import it.unimi.dsi.fastutil.ints.Int2IntFunction
 import net.minecraft.network.chat.Component
 import java.util.*
 import java.util.function.BiFunction
@@ -43,7 +43,7 @@ object MachineReg {
     }
 
     fun registerSimpleMachines(
-        name: String, recipeType: GTRecipeType, tankScalingFunction: Int2LongFunction, tiers: IntArray
+        name: String, recipeType: GTRecipeType, tankScalingFunction: Int2IntFunction, tiers: IntArray
     ): Array<MachineDefinition?> {
         return registerTieredMachines(name, { holder, tier ->
             SimpleTieredMachine(holder, tier, tankScalingFunction)
@@ -54,7 +54,8 @@ object MachineReg {
                 .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
                 .workableTieredHullRenderer(GTNN.id("block/machines/$name")).tooltips(GTMachines.explosion()).tooltips(
                     *GTMachines.workableTiered(
-                        tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType, tankScalingFunction.apply(tier), true
+                        tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType,
+                        tankScalingFunction.apply(tier).toLong(), true
                     )
                 ).compassNode(name).register()
         }, tiers)
@@ -64,7 +65,7 @@ object MachineReg {
         name: String,
         recipeType: GTRecipeType,
         recipeModifier: RecipeModifier,
-        tankScalingFunction: Int2LongFunction,
+        tankScalingFunction: Int2IntFunction,
         tiers: IntArray
     ): Array<MachineDefinition?> {
         return registerTieredMachines(name,
@@ -84,7 +85,7 @@ object MachineReg {
                             GTValues.V[tier],
                             GTValues.V[tier] * 64,
                             recipeType,
-                            tankScalingFunction.apply(tier),
+                            tankScalingFunction.apply(tier).toLong(),
                             false
                         )
                     ).compassNode(name).register()
