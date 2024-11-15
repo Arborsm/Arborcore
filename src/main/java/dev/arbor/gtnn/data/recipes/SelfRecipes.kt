@@ -349,7 +349,7 @@ object SelfRecipes {
         GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("large_naquadah_reactor_casing")
             .inputItems(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.asItem())
             .inputItems(TagPrefix.wireGtHex, GTMaterials.IndiumTinBariumTitaniumCuprate, 4)
-            .inputItems(GTItems.BATTERY_LUV_VANADIUM.asStack(1))
+            .inputItems(GTItems.BATTERY_LuV_VANADIUM.asStack(1))
             .inputItems(GTItems.ROBOT_ARM_EV.asStack(4))
             .inputItems(TagPrefix.plate, GTMaterials.Zeron100, 8)
             .inputItems(CustomTags.IV_CIRCUITS, 8)

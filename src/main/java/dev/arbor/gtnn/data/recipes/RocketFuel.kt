@@ -10,12 +10,8 @@ import com.gregtechceu.gtceu.common.data.GTMaterials
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes
 import com.gregtechceu.gtceu.data.recipe.CustomTags
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper
-import dev.arbor.gtnn.data.GTNNTagPrefix
 import dev.arbor.gtnn.api.recipe.PlantCasingCondition
-import dev.arbor.gtnn.data.GTNNMachines
-import dev.arbor.gtnn.data.GTNNMaterials
-import dev.arbor.gtnn.data.GTNNRecipeTypes
-import dev.arbor.gtnn.data.GTNNRecipes
+import dev.arbor.gtnn.data.*
 import net.minecraft.data.recipes.FinishedRecipe
 import java.util.function.Consumer
 
@@ -213,7 +209,7 @@ object RocketFuel {
             provider, true, "rocket_engine_luv", GTNNMachines.Rocket_Engine[GTValues.LuV]!!
                 .asStack(),
             "ABA", "CDC", "EFE",
-            'A', GTItems.ELECTRIC_PISTON_LUV,
+            'A', GTItems.ELECTRIC_PISTON_LuV,
             'B', CustomTags.LuV_CIRCUITS,
             'C', GTItems.ELECTRIC_MOTOR_LuV,
             'D', GTMachines.HULL[GTValues.LuV].asStack(),
