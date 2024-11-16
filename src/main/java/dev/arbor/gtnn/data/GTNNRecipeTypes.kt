@@ -37,6 +37,7 @@ object GTNNRecipeTypes {
 
     val STONE_BEDROCK_ORE_MACHINE_RECIPES: GTRecipeType =
         GTRecipeTypes.register("homemade_bedrock_ore_machine", GTRecipeTypes.STEAM)
+            .setXEIVisible(false)
             .setMaxIOSize(1, 6, 0, 0)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.FURNACE)

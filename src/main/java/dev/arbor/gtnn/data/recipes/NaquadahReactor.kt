@@ -1,5 +1,6 @@
 package dev.arbor.gtnn.data.recipes
 
+import com.gregtechceu.gtceu.api.GTCEuAPI
 import com.gregtechceu.gtceu.api.GTValues
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.UnificationEntry
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix
@@ -89,7 +90,8 @@ object NaquadahReactor {
             'D', GTMachines.HULL[GTValues.ZPM].asStack(),
             'E', UnificationEntry(TagPrefix.cableGtQuadruple, GTMaterials.Naquadah)
         )
-        VanillaRecipeHelper.addShapedRecipe(
+        if (GTCEuAPI.isHighTier()){
+            VanillaRecipeHelper.addShapedRecipe(
             provider, true, "naquadah_reactor_uv", GTNNMachines.NAQUADAH_REACTOR[GTValues.UV]!!
                 .asStack(),
             "ABA", "CDC", "EBE",
@@ -99,5 +101,6 @@ object NaquadahReactor {
             'D', GTMachines.HULL[GTValues.UV].asStack(),
             'E', UnificationEntry(TagPrefix.cableGtQuadruple, GTMaterials.EnrichedNaquadahTriniumEuropiumDuranide)
         )
+        }
     }
 }

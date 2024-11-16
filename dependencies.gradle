@@ -46,7 +46,7 @@ dependencies {
 
     // EMI
     modCompileOnly("dev.emi:emi-forge:${forge.versions.emi.get()}:api")
-    modCompileOnly forge.emi
+    modImplementation forge.emi
 
     // Jade
     modImplementation(forge.jade)
