@@ -28,7 +28,7 @@ object AdjustGTMaterials {
         // IronMagnetic.addFlags(GENERATE_PLATE)
         SteelMagnetic.addFlags(GENERATE_PLATE)
         NeodymiumMagnetic.addFlags(GENERATE_PLATE)
-        SamariumMagnetic.addFlags(GENERATE_PLATE)
+        //SamariumMagnetic.addFlags(GENERATE_PLATE)
         NaquadahEnriched.addFlags(GENERATE_LONG_ROD)
         NickelZincFerrite.addFlags(GENERATE_LONG_ROD)
         BlueAlloy.addFlags(GENERATE_FRAME)
