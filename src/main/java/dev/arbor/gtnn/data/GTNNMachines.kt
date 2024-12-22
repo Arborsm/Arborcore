@@ -19,6 +19,7 @@ import com.gregtechceu.gtceu.api.pattern.util.RelativeDirection
 import com.gregtechceu.gtceu.api.recipe.OverclockingLogic
 import com.gregtechceu.gtceu.client.renderer.machine.MinerRenderer
 import com.gregtechceu.gtceu.common.data.*
+import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils
 import com.gregtechceu.gtceu.utils.FormattingUtil
 import dev.arbor.gtnn.GTNN
 import dev.arbor.gtnn.GTNNRegistries.REGISTRATE
@@ -71,7 +72,7 @@ object GTNNMachines {
                 .tooltips(Component.translatable("gtnn.machine.neutron_accelerator.tooltip2", V[tier]))
                 .tooltips(Component.translatable("gtnn.machine.neutron_accelerator.tooltip3", V[tier] * 8 / 10))
                 .tooltips(Component.translatable("gtnn.machine.neutron_accelerator.tooltip4"))
-                .overlayTieredHullRenderer("neutron_accelerator").compassNode("neutron_accelerator").register()
+                .overlayTieredHullRenderer("neutron_accelerator").register()
         }, ULV2UV
     )
 
@@ -96,7 +97,7 @@ object GTNNMachines {
     //////////////////////////////////////
 
     val DEHYDRATOR: Array<MachineDefinition?> = MachineReg.registerSimpleMachines(
-        "dehydrator", GTNNRecipeTypes.DEHYDRATOR_RECIPES, GTMachines.defaultTankSizeFunction, MV2ZPM
+        "dehydrator", GTNNRecipeTypes.DEHYDRATOR_RECIPES, GTMachineUtils.defaultTankSizeFunction, MV2ZPM
     )
 
 
@@ -104,7 +105,7 @@ object GTNNMachines {
         "naquadah_reactor",
         GTNNRecipeTypes.NAQUADAH_REACTOR_RECIPES,
         GTNNGeneratorMachine::nonParallel,
-        GTMachines.genericGeneratorTankSizeFunction,
+        GTMachineUtils.genericGeneratorTankSizeFunction,
         EV2UV
     )
 
@@ -113,7 +114,7 @@ object GTNNMachines {
         "rocket_engine",
         GTNNRecipeTypes.ROCKET_ENGINE_RECIPES,
         GTNNGeneratorMachine::parallel,
-        GTMachines.genericGeneratorTankSizeFunction,
+        GTMachineUtils.genericGeneratorTankSizeFunction,
         intArrayOf(EV, IV, LuV)
     )
 
@@ -188,7 +189,7 @@ object GTNNMachines {
             for (pipe in BlockMaps.ALL_CP_TUBES) {
                 shapeBlock[pipe.key.tier + 39] = pipe.value.get().defaultBlockState()
             }
-            for (tier in ITierType.TierBlockType.values().map { it.tier }.filter { it in 0..8 }) {
+            for (tier in ITierType.TierBlockType.entries.map { it.tier }.filter { it in 0..8 }) {
                 builder.where('A', shapeBlock.getOrDefault(tier + 10, BlockMaps.ALL_CP_CASINGS.getMax()))
                 builder.where('B', shapeBlock.getOrDefault(tier + 20, BlockMaps.ALL_MACHINE_CASINGS.getMax()))
                 builder.where('C', shapeBlock.getOrDefault(tier + 30, GTCEuAPI.HEATING_COILS.getMax()))

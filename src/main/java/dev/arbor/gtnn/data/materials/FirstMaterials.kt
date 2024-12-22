@@ -1,13 +1,13 @@
 package dev.arbor.gtnn.data.materials
 
 import com.gregtechceu.gtceu.api.GTValues
+import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder
 import com.gregtechceu.gtceu.common.data.GTMaterials
 import dev.arbor.gtnn.data.GTNNElement
 import dev.arbor.gtnn.data.GTNNMaterials.*
-import dev.arbor.gtnn.data.GTNNMaterials.MaterialIcons
 
 object FirstMaterials {
     fun init() {
@@ -18,6 +18,13 @@ object FirstMaterials {
 
         Infinity = Builder("infinity").ingot().fluid().ore().dust().color(0xFFFFFF)
             .iconSet(MaterialIcons.InfinityIcon).element(GTNNElement.IF2)
+            .flags(
+                MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD,
+                MaterialFlags.GENERATE_LONG_ROD, MaterialFlags.GENERATE_RING,
+                MaterialFlags.GENERATE_ROUND, MaterialFlags.GENERATE_GEAR,
+                MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_BOLT_SCREW,
+                MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE
+            )
             .blastTemp(10800, BlastProperty.GasTier.HIGHEST, GTValues.VA[GTValues.UHV], 54562).buildAndRegister()
 
         InfinityCatalyst =

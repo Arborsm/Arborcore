@@ -1,26 +1,30 @@
 package dev.arbor.gtnn.api.recipe;
 
-import com.google.gson.JsonObject;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.RecipeCondition;
 import com.gregtechceu.gtceu.api.recipe.condition.RecipeConditionType;
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.arbor.gtnn.api.machine.multiblock.ChemicalPlantMachine;
-import dev.arbor.gtnn.data.GTNNRecipeConditions;
+
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.Mth;
+
+import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.arbor.gtnn.api.machine.multiblock.ChemicalPlantMachine;
+import dev.arbor.gtnn.data.GTNNRecipeConditions;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
 public class PlantCasingCondition extends RecipeCondition {
-    public static final Codec<PlantCasingCondition> CODEC =
-            RecordCodecBuilder.create(instance -> RecipeCondition.isReverse(instance).and(
-                    Codec.INT.fieldOf("plantCasing").forGetter(it -> it.tier)).apply(instance, PlantCasingCondition::new));
+
+    public static final Codec<PlantCasingCondition> CODEC = RecordCodecBuilder.create(instance -> RecipeCondition
+            .isReverse(instance).and(
+                    Codec.INT.fieldOf("plantCasing").forGetter(it -> it.tier))
+            .apply(instance, PlantCasingCondition::new));
 
     public static final int BRONZE = 1;
     public static final int STEEL = 2;
@@ -35,8 +39,7 @@ public class PlantCasingCondition extends RecipeCondition {
             ALUMINIUM, "gtnn.recipe.condition.plant_casing.tier.aluminium",
             STAINLESS_STEEL, "gtnn.recipe.condition.plant_casing.tier.stainless_steel",
             TITANIUM, "gtnn.recipe.condition.plant_casing.tier.titanium",
-            TUNGSTEN_STEEL, "gtnn.recipe.condition.plant_casing.tier.tungsten_steel"
-    );
+            TUNGSTEN_STEEL, "gtnn.recipe.condition.plant_casing.tier.tungsten_steel");
 
     public static final PlantCasingCondition INSTANCE = new PlantCasingCondition();
 
@@ -62,8 +65,7 @@ public class PlantCasingCondition extends RecipeCondition {
     public Component getTooltips() {
         return Component.translatable(
                 "gtnn.recipe.condition.plant_casing.tooltip",
-                tier, Component.translatable(CASING_TIERS.get(tier))
-        );
+                tier, Component.translatable(CASING_TIERS.get(tier)));
     }
 
     @Override

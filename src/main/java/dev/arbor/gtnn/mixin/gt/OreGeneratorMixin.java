@@ -7,8 +7,7 @@ import com.gregtechceu.gtceu.api.data.worldgen.ores.GeneratedVeinMetadata;
 import com.gregtechceu.gtceu.api.data.worldgen.ores.OreGenerator;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.config.ConfigHolder;
-import dev.arbor.gtnn.GTNN;
-import dev.arbor.gtnn.api.mixin.VeinConfiguration;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
@@ -16,6 +15,9 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.XoroshiroRandomSource;
 import net.minecraft.world.level.levelgen.placement.PlacementContext;
+
+import dev.arbor.gtnn.GTNN;
+import dev.arbor.gtnn.api.mixin.VeinConfiguration;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -29,13 +31,18 @@ import java.util.stream.Stream;
 
 @Mixin(value = OreGenerator.class, remap = false)
 public abstract class OreGeneratorMixin {
+
     @Unique
     @NotNull
-    private static Optional<BlockPos> gtnn$computeVeinOrigin(WorldGenLevel level, ChunkGenerator generator, RandomSource random, BlockPos veinCenter, GTOreDefinition entry) {
+    private static Optional<BlockPos> gtnn$computeVeinOrigin(WorldGenLevel level, ChunkGenerator generator,
+                                                             RandomSource random, BlockPos veinCenter,
+                                                             GTOreDefinition entry) {
         int layerSeed = WorldGeneratorUtils.getWorldGenLayerKey(entry.layer()).map(String::hashCode).orElse(0);
         var layeredRandom = new XoroshiroRandomSource(random.nextLong() ^ ((long) layerSeed));
 
-        return entry.range().getPositions(new PlacementContext(level, generator, Optional.empty()), layeredRandom, veinCenter).findFirst();
+        return entry.range()
+                .getPositions(new PlacementContext(level, generator, Optional.empty()), layeredRandom, veinCenter)
+                .findFirst();
     }
 
     @Unique
@@ -59,17 +66,21 @@ public abstract class OreGeneratorMixin {
     }
 
     @Inject(method = "generateMetadata", at = @At("HEAD"), cancellable = true)
-    private void generateMetadata(WorldGenLevel level, ChunkGenerator chunkGenerator, ChunkPos chunkPos, CallbackInfoReturnable<List<GeneratedVeinMetadata>> cir) {
+    private void generateMetadata(WorldGenLevel level, ChunkGenerator chunkGenerator, ChunkPos chunkPos,
+                                  CallbackInfoReturnable<List<GeneratedVeinMetadata>> cir) {
         if (GTNN.INSTANCE.getServerConfig().timesOreVeins != 1) {
-            cir.setReturnValue(gtnn$createConfigs(level, chunkGenerator, chunkPos).stream().map(OreGeneratorMixin::gtnn$logVeinGeneration).map(VeinConfiguration::data).toList());
+            cir.setReturnValue(gtnn$createConfigs(level, chunkGenerator, chunkPos).stream()
+                    .map(OreGeneratorMixin::gtnn$logVeinGeneration).map(VeinConfiguration::data).toList());
         }
     }
 
     @Shadow
-    protected abstract Stream<GTOreDefinition> getEntries(WorldGenLevel level, BlockPos veinCenter, XoroshiroRandomSource random);
+    protected abstract Stream<GTOreDefinition> getEntries(WorldGenLevel level, BlockPos veinCenter,
+                                                          XoroshiroRandomSource random);
 
     @Unique
-    private List<VeinConfiguration> gtnn$createConfigs(WorldGenLevel level, ChunkGenerator generator, ChunkPos chunkPos) {
+    private List<VeinConfiguration> gtnn$createConfigs(WorldGenLevel level, ChunkGenerator generator,
+                                                       ChunkPos chunkPos) {
         List<VeinConfiguration> list = new ArrayList<>();
         Set<GTOreDefinition> oreVeins = new HashSet<>();
         for (int i = 0; i < GTNN.INSTANCE.getServerConfig().timesOreVeins; i++) {
@@ -84,7 +95,9 @@ public abstract class OreGeneratorMixin {
                 return oreVeinList.stream().map(entry -> {
                     var id = GTRegistries.ORE_VEINS.getKey(entry);
                     if (entry == null) return null;
-                    BlockPos origin = gtnn$computeVeinOrigin(level, generator, random, veinCenter, entry).orElseThrow(() -> new IllegalStateException("Cannot determine y coordinate for the vein at " + veinCenter));
+                    BlockPos origin = gtnn$computeVeinOrigin(level, generator, random, veinCenter, entry)
+                            .orElseThrow(() -> new IllegalStateException(
+                                    "Cannot determine y coordinate for the vein at " + veinCenter));
                     return new VeinConfiguration(new GeneratedVeinMetadata(id, chunkPos, origin, entry), random);
                 });
             }).toList());

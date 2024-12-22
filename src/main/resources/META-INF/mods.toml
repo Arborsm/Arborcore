@@ -1,20 +1,20 @@
 modLoader = "javafml"
-loaderVersion = "[47,)"
+loaderVersion = "[${forge_version},)"
 issueTrackerURL = "https://github.com/Arborsm/GT--/issues"
 license = "MIT"
 
 [[mods]]
 modId = "gtnn"
-version = "${version}"
+version = "1.1.7"
 displayName = "GT--"
-authors = "${mod_authors}"
+authors = "Arborsm"
 description = '''${mod_description}'''
 #logoFile = ""
 
 [[dependencies.gtnn]]
 modId = "forge"
 mandatory = true
-versionRange = "[47,)"
+versionRange = "[${forge_version},)"
 ordering = "NONE"
 side = "BOTH"
 

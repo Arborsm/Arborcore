@@ -4,14 +4,14 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity
 import com.gregtechceu.gtceu.api.machine.SimpleTieredMachine
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableEnergyContainer
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic
-import com.gregtechceu.gtceu.common.data.GTMachines
+import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder
 import dev.arbor.gtnn.api.recipe.GTNNBedrockOreMinerLogic
 import dev.arbor.gtnn.api.recipe.OresHelper.ALLOW_ITEM
 import net.minecraft.world.item.Item
 
 class StoneBedrockOreMinerMachine(holder: IMachineBlockEntity) :
-    SimpleTieredMachine(holder, 0, GTMachines.defaultTankSizeFunction) {
+    SimpleTieredMachine(holder, 0, GTMachineUtils.defaultTankSizeFunction) {
 
     init {
         this.importItems.setFilter { ALLOW_ITEM.contains(it.item) }

@@ -11,8 +11,8 @@ import com.gregtechceu.gtceu.api.recipe.OverclockingLogic
 import com.gregtechceu.gtceu.api.recipe.modifier.RecipeModifier
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder
 import com.gregtechceu.gtceu.client.renderer.machine.SimpleGeneratorMachineRenderer
-import com.gregtechceu.gtceu.common.data.GTMachines
 import com.gregtechceu.gtceu.common.data.GTRecipeModifiers
+import com.gregtechceu.gtceu.common.data.machines.GTMachineUtils
 import com.gregtechceu.gtceu.utils.FormattingUtil
 import dev.arbor.gtnn.GTNN
 import dev.arbor.gtnn.GTNNRegistries
@@ -52,12 +52,12 @@ object MachineReg {
                 .editableUI(SimpleTieredMachine.EDITABLE_UI_CREATOR.apply(GTCEu.id(name), recipeType))
                 .rotationState(RotationState.NON_Y_AXIS).recipeType(recipeType)
                 .recipeModifier(GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK))
-                .workableTieredHullRenderer(GTNN.id("block/machines/$name")).tooltips(GTMachines.explosion()).tooltips(
-                    *GTMachines.workableTiered(
+                .workableTieredHullRenderer(GTNN.id("block/machines/$name")).tooltips(GTMachineUtils.explosion()).tooltips(
+                    *GTMachineUtils.workableTiered(
                         tier, GTValues.V[tier], GTValues.V[tier] * 64, recipeType,
                         tankScalingFunction.apply(tier).toLong(), true
                     )
-                ).compassNode(name).register()
+                ).register()
         }, tiers)
     }
 
@@ -79,8 +79,8 @@ object MachineReg {
                         Component.translatable(
                             "gtnn.machine.$name.tooltip", GTNNGeneratorMachine.getEfficiency(tier, name)
                         )
-                    ).tooltips(GTMachines.explosion()).tooltips(
-                        *GTMachines.workableTiered(
+                    ).tooltips(GTMachineUtils.explosion()).tooltips(
+                        *GTMachineUtils.workableTiered(
                             tier,
                             GTValues.V[tier],
                             GTValues.V[tier] * 64,
@@ -88,7 +88,7 @@ object MachineReg {
                             tankScalingFunction.apply(tier).toLong(),
                             false
                         )
-                    ).compassNode(name).register()
+                    ).register()
             },
             tiers
         )

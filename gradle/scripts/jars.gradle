@@ -1,33 +1,38 @@
-//file:noinspection GroovyUnusedAssignment
-apply plugin: "dev.architectury.loom"
-
-java {
-    withSourcesJar()
+tasks.register('slimJar', Jar) {
+    archiveClassifier = "dev-slim"
+    from sourceSets.main.output
 }
 
-shadowJar {
-    exclude "fabric.mod.json"
-    exclude "architectury.common.json"
-
-    configurations = [project.configurations.shadow]
-    archiveClassifier = "dev-shadow"
+obfuscation {
+    reobfuscate(tasks.named('slimJar'), sourceSets.main) {
+        archiveClassifier = "slim"
+    }
 }
 
-remapJar {
-    inputFile.set shadowJar.archiveFile
-    dependsOn shadowJar
-    archiveClassifier = null
+tasks.register('sourcesJar', Jar) {
+    from delombok.outputs.files
+    dependsOn delombok
+    archiveClassifier = "sources"
 }
 
-jar {
-    archiveClassifier = "dev"
+jar.archiveClassifier = "dev"
+reobfJar.archiveClassifier = ""
+
+base {
+    archivesName = "${project.name}-${libs.versions.minecraft.get()}"
 }
 
-remapSlimJar {
-    addNestedDependencies = false
-    archiveClassifier = "slim"
+afterEvaluate {
+    tasks.withType(org.gradle.jvm.tasks.Jar).configureEach {
+        destinationDirectory = file('build/libs/')
+        manifest.attributes([
+                'MixinConfigs': 'gtnn.mixins.json',
+                'Specification-Title': project.name,
+                'Specification-Version': mod_version,
+                'Specification-Vendor': 'Arborsm',
+                'Implementation-Title': base.archivesName,
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'Arborsm',
+        ])
+    }
 }
-
-tasks.remapJar.dependsOn('remapSlimJar')
-
-archivesBaseName = "${project.name}"

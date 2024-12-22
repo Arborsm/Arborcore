@@ -9,10 +9,11 @@ import net.minecraftforge.eventbus.api.IEventBus
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
-object GTNN {
-    const val MODID = "gtnn"
 
-    val LOGGER: Logger by lazy { LogManager.getLogger(MODID) }
+object GTNN {
+    const val MOD_ID = "gtnn"
+
+    val LOGGER: Logger by lazy { LogManager.getLogger(MOD_ID) }
 
     fun init() {
         CommonProxy.init()
@@ -27,7 +28,7 @@ object GTNN {
     }
 
     fun id(path: String): ResourceLocation {
-        return ResourceLocation(MODID, FormattingUtil.toLowerCaseUnder(path))
+        return ResourceLocation(MOD_ID, FormattingUtil.toLowerCaseUnder(path))
     }
 
     @JvmStatic
@@ -40,6 +41,13 @@ object GTNN {
     fun register(modBus: IEventBus) {
         modBus.addListener(GTNNRegistries::registerMaterials)
         modBus.addListener(GTNNRegistries::registerMaterialRegistryEvent)
+    }
+
+    @JvmStatic
+    fun eventRegister(events: IEventBus) {
+        events.addListener(GTNNRegistries::serverStopped)
+        events.addListener(GTNNRegistries::fmlCommonSetupEvent)
+        events.addListener(GTNNRegistries::onServerStarting)
     }
 }
 

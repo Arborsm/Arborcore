@@ -3,12 +3,15 @@ package dev.arbor.gtnn.data
 import com.gregtechceu.gtceu.api.item.ComponentItem
 import com.gregtechceu.gtceu.api.item.IComponentItem
 import com.gregtechceu.gtceu.api.item.component.IItemComponent
+import com.gregtechceu.gtceu.common.data.GTItems
+import com.gregtechceu.gtceu.common.item.CoverPlaceBehavior
 import com.gregtechceu.gtceu.common.item.TooltipBehavior
 import com.tterrag.registrate.Registrate
 import com.tterrag.registrate.builders.ItemBuilder
 import com.tterrag.registrate.util.entry.ItemEntry
 import com.tterrag.registrate.util.nullness.NonNullConsumer
 import com.tterrag.registrate.util.nullness.NonNullFunction
+import dev.arbor.gtnn.GTNN
 import dev.arbor.gtnn.GTNNRegistries.REGISTRATE
 import dev.arbor.gtnn.data.materials.GTNNChemicalItems
 import net.minecraft.network.chat.Component
@@ -208,6 +211,26 @@ object GTNNItems {
         createItem("computer_advanced_circuit") { properties: Item.Properties -> ComponentItem.create(properties) }
             .lang("Advanced Computer Chip")
             .properties { p: Item.Properties -> p.rarity(Rarity.RARE) }
+            .register()
+
+    val COVER_ENDER_FLUID_LINK: ItemEntry<ComponentItem> =
+        createItem("ender_fluid_link_cover") { properties -> ComponentItem.create(properties) }
+            .lang("Ender Fluid Link")
+            .onRegister(GTItems.attach(TooltipBehavior{
+                it.add(Component.translatable("item.gtnn.ender_fluid_link_cover.tooltip"))
+                if (!GTNN.getServerConfig().isTurnOnEnderFluidCover) it.add(
+                    Component.translatable("tooltip.gtnn.banItem"))
+            }, CoverPlaceBehavior(GTNNCovers.ENDER_FLUID_LINK)))
+            .register()
+
+    val COVER_ENDER_ITEM_LINK: ItemEntry<ComponentItem> =
+        createItem("ender_item_link_cover") { properties -> ComponentItem.create(properties) }
+            .lang("Ender Item Link")
+            .onRegister(GTItems.attach(TooltipBehavior {
+                it.add(Component.translatable("item.gtnn.ender_item_link_cover.tooltip"))
+                if (!GTNN.getServerConfig().isTurnOnEnderItemCover) it.add(
+                    Component.translatable("tooltip.gtnn.banItem"))
+            }, CoverPlaceBehavior(GTNNCovers.ENDER_ITEM_LINK)))
             .register()
 
     private fun <T : IComponentItem?> attach(components: IItemComponent?): NonNullConsumer<T> {

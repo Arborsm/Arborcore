@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.stack.UnificationEntry
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType
 import com.gregtechceu.gtceu.common.data.*
+import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines
 import com.gregtechceu.gtceu.data.recipe.CustomTags
 import com.gregtechceu.gtceu.data.recipe.VanillaRecipeHelper
 import dev.arbor.gtnn.GTNN
@@ -29,6 +30,34 @@ object DefaultRecipes {
     fun init(provider: Consumer<FinishedRecipe>) {
         Misc.init(provider)
         SelfRecipes.init(provider)
+
+        VanillaRecipeHelper.addShapelessRecipe(provider, "cover_ender_fluid_link_gtnn",
+            GTNNItems.COVER_ENDER_FLUID_LINK.asStack(), GTItems.COVER_ENDER_FLUID_LINK.asStack())
+
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(GTNN.id("cover_ender_fluid_link"))
+            .inputItems(TagPrefix.plate, GTMaterials.EnderPearl, 9)
+            .inputItems(TagPrefix.plateDouble, GTMaterials.StainlessSteel)
+            .inputItems(GTItems.SENSOR_HV)
+            .inputItems(GTItems.EMITTER_HV)
+            .inputItems(GTItems.ELECTRIC_PUMP_HV)
+            .inputFluids(GTMaterials.Polyethylene.getFluid(GTValues.L * 2))
+            .outputItems(GTNNItems.COVER_ENDER_FLUID_LINK)
+            .EUt(GTValues.VA[GTValues.HV].toLong()).duration(320)
+            .circuitMeta(13)
+            .save(provider)
+
+        GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder(GTNN.id("cover_ender_item_link"))
+            .inputItems(TagPrefix.plate, GTMaterials.EnderPearl, 9)
+            .inputItems(TagPrefix.plateDouble, GTMaterials.StainlessSteel)
+            .inputItems(GTItems.SENSOR_HV)
+            .inputItems(GTItems.EMITTER_HV)
+            .inputItems(GTItems.ELECTRIC_MOTOR_HV)
+            .inputFluids(GTMaterials.Polyethylene.getFluid(GTValues.L * 2))
+            .outputItems(GTNNItems.COVER_ENDER_ITEM_LINK)
+            .EUt(GTValues.VA[GTValues.HV].toLong()).duration(320)
+            .circuitMeta(13)
+            .save(provider)
+
         addBOOMRecipes(
             "heavy_plate_t1",
             GTNNItems.HEAVY_INGOT_T1,
@@ -133,22 +162,22 @@ object DefaultRecipes {
                     .inputItems(GTItems.ELECTRIC_PUMP_MV, 4)
                     .inputItems(TagPrefix.gear, GTMaterials.Steel, 4)
                     .inputFluids(GTMaterials.SolderingAlloy.getFluid(72))
-                    .outputItems(GTMachines.BEDROCK_ORE_MINER[GTValues.MV])
+                    .outputItems(GTMultiMachines.BEDROCK_ORE_MINER[GTValues.MV])
                     .circuitMeta(2)
                     .duration(GTNNRecipes.dur(20.0)).EUt(GTValues.VA[GTValues.MV].toLong()).save(provider)
                 GTRecipeTypes.ASSEMBLER_RECIPES.recipeBuilder("bedrock_ore_machine_ii")
-                    .inputItems(GTMachines.LARGE_MINER[GTValues.EV])
+                    .inputItems(GTMultiMachines.LARGE_MINER[GTValues.EV])
                     .inputItems(TagPrefix.frameGt, GTMaterials.Titanium, 4)
                     .inputItems(CustomTags.EV_CIRCUITS, 4)
                     .inputItems(GTItems.ELECTRIC_MOTOR_EV, 4)
                     .inputItems(GTItems.ELECTRIC_PUMP_EV, 4)
                     .inputItems(TagPrefix.gear, GTMaterials.Tungsten, 4)
                     .inputFluids(GTMaterials.SolderingAlloy.getFluid(144))
-                    .outputItems(GTMachines.BEDROCK_ORE_MINER[GTValues.HV])
+                    .outputItems(GTMultiMachines.BEDROCK_ORE_MINER[GTValues.HV])
                     .circuitMeta(2)
                     .duration(GTNNRecipes.dur(60.0)).EUt(GTValues.VA[GTValues.EV].toLong()).save(provider)
                 GTRecipeTypes.ASSEMBLY_LINE_RECIPES.recipeBuilder("bedrock_ore_machine_iii")
-                    .inputItems(GTMachines.LARGE_MINER[GTValues.LuV])
+                    .inputItems(GTMultiMachines.LARGE_MINER[GTValues.LuV])
                     .inputItems(TagPrefix.frameGt, GTMaterials.Tritanium, 9)
                     .inputItems(TagPrefix.plate, GTMaterials.Europium, 3)
                     .inputItems(GTItems.ELECTRIC_MOTOR_LuV, 9)
@@ -157,8 +186,8 @@ object DefaultRecipes {
                     .inputItems(TagPrefix.screw, GTMaterials.Europium, 36)
                     .inputFluids(Cerrobase140.getFluid(1440))
                     .inputFluids(GTMaterials.Neon.getFluid(20000))
-                    .outputItems(GTMachines.BEDROCK_ORE_MINER[GTValues.EV])
-                    .scannerResearch(GTMachines.LARGE_MINER[GTValues.LuV].asStack())
+                    .outputItems(GTMultiMachines.BEDROCK_ORE_MINER[GTValues.EV])
+                    .scannerResearch(GTMultiMachines.LARGE_MINER[GTValues.LuV].asStack())
                     .duration(GTNNRecipes.dur(300.0)).EUt(GTValues.VA[GTValues.LuV].toLong()).save(provider)
             }
             if (isSupplementariesLoaded()) {

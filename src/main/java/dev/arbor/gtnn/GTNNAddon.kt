@@ -25,7 +25,7 @@ class GTNNAddon : IGTAddon {
     }
 
     override fun addonModId(): String {
-        return GTNN.MODID
+        return GTNN.MOD_ID
     }
 
     override fun registerTagPrefixes() {
@@ -61,4 +61,7 @@ class GTNNAddon : IGTAddon {
         super.registerRecipeKeys(event)
     }
 
+    override fun registerCovers() {
+        GTNNCovers.init();
+    }
 }

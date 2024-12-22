@@ -10,8 +10,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine
 import com.gregtechceu.gtceu.api.recipe.GTRecipe
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper
 import com.gregtechceu.gtceu.api.recipe.content.Content
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction
 import com.gregtechceu.gtceu.common.data.GTMaterials
 import com.gregtechceu.gtceu.common.machine.multiblock.part.FluidHatchPartMachine
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted
@@ -178,27 +177,28 @@ class LargeNaquadahReactorMachine(holder: IMachineBlockEntity) : WorkableElectri
         private val MANAGED_FIELD_HOLDER =
             ManagedFieldHolder(LargeNaquadahReactorMachine::class.java, WorkableMultiblockMachine.MANAGED_FIELD_HOLDER)
 
-        @Suppress("UNUSED_PARAMETER")
-        fun modifyRecipe(machine: MetaMachine, recipe: GTRecipe, ocParams: OCParams, ocResult: OCResult): GTRecipe? {
-            if (recipe.recipeType != GTNNRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES) return null
+        fun modifyRecipe(machine: MetaMachine, recipe: GTRecipe): ModifierFunction {
+            if (recipe.recipeType != GTNNRecipeTypes.LARGE_NAQUADAH_REACTOR_RECIPES) return ModifierFunction.NULL
             if (machine is LargeNaquadahReactorMachine) {
-                val duration = recipe.duration
-                machine.checkHatch(machine, duration)
-                val copyRecipe = recipe.copy()
-                if (!machine.hasAir) {
-                    copyRecipe.tickOutputs.clear()
-                    copyRecipe.outputs.clear()
-                    return copyRecipe
+                return ModifierFunction {
+                    val duration = recipe.duration
+                    machine.checkHatch(machine, duration)
+                    val copyRecipe = recipe.copy()
+                    if (!machine.hasAir) {
+                        copyRecipe.tickOutputs.clear()
+                        copyRecipe.outputs.clear()
+                        return@ModifierFunction copyRecipe
+                    }
+                    var eut = RecipeHelper.getOutputEUt(copyRecipe)
+                    if (machine.hasCool) {
+                        eut = (eut * 1.5).toLong()
+                    }
+                    eut *= machine.activeFluidPower
+                    copyRecipe.tickOutputs[EURecipeCapability.CAP] = listOf(Content(eut, 1, 1, 0, "", ""))
+                    return@ModifierFunction copyRecipe
                 }
-                var eut = RecipeHelper.getOutputEUt(copyRecipe)
-                if (machine.hasCool) {
-                    eut = (eut * 1.5).toLong()
-                }
-                eut *= machine.activeFluidPower
-                copyRecipe.tickOutputs[EURecipeCapability.CAP] = listOf(Content(eut, 1, 1, 0, "", ""))
-                return copyRecipe
             }
-            return null
+            return ModifierFunction.NULL
         }
     }
 }

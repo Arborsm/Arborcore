@@ -7,7 +7,11 @@ object MiscLang {
         config()
         tsl("gtnn.jei.bedrock_ores.dimension", "维度: %s", "Dimension: %s")
         tsl("gtnn.jei.bedrock_ores", "基岩矿石", "Bedrock Ores")
-
+        tsl("cover.ender_item_link.title", "末影物品连接", "Ender Item Link")
+        tsl("cover.ender_fluid_link.tooltip.channel_description", "设置频道描述", "Set channel description with input text")
+        tsl("cover.ender_fluid_link.tooltip.channel_name", "设置频道名称", "Set channel name with input text")
+        tsl("cover.ender_fluid_link.tooltip.list_button", "显示频道列表", "Show channel list")
+        tsl("cover.ender_fluid_link.tooltip.clear_button", "清除频道描述", "Clear channel description")
     }
 
     private fun config() {
@@ -30,6 +34,8 @@ object MiscLang {
         tsl("config.gtnn.option.skyblock", "开启空岛模式", "Enable SkyBlock mode")
         tsl("config.gtnn.option.gtOresMultiplyNum", "GT矿脉大小倍数", "GT OreVeins Size Multiplier")
         tsl("config.gtnn.option.timesOreVeins", "单区块GT矿脉生成数量", "GT OreVeins Num Per Chunk")
+        tsl("config.gtnn.option.isTurnOnEnderFluidCover", "启用末影流体覆盖板", "Enable Ender Fluid Link Cover")
+        tsl("config.gtnn.option.isTurnOnEnderItemCover", "启用末影物品覆盖板", "Enable Ender Item Link Cover")
     }
 
     private fun blocks() {
@@ -88,6 +94,13 @@ object MiscLang {
         tsl("item.gtnn.t4_chip", "T4芯片")
         tsl("item.gtnn.computer_circuit", "计算机芯片")
         tsl("item.gtnn.computer_advanced_circuit", "高级计算机芯片")
+        tsl("item.gtnn.ender_fluid_link_cover", "末影流体覆盖板")
+        tsl("item.gtnn.ender_item_link_cover", "末影物品覆盖板")
+        tsl("item.gtnn.ender_fluid_link_cover.tooltip", "§7作§f覆盖板§7时利用§f无线§7§d末影§f连接§7传输§f流体§7。",
+            "§7Transports §fFluids§7 with a §fWireless §dEnder§f Connection§7 as §fCover§7.")
+        tsl("item.gtnn.ender_item_link_cover.tooltip", "§7作§f覆盖板§7时利用§f无线§7§d末影§f连接§7传输§f物品§7。",
+            "§7Transports §fItems§7 with a §fWireless §dEnder§f Connection§7 as §fCover§7.")
+        tsl("tooltip.gtnn.banItem", "§4已禁用", "§4Banned")
     }
 
     private fun tsl(key: String?, cn: String?) {

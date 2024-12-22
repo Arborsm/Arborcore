@@ -3,6 +3,7 @@ package dev.arbor.gtnn.mixin.gt;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.BedrockOreMinerMachine;
 import com.gregtechceu.gtceu.common.machine.trait.BedrockOreMinerLogic;
+
 import dev.arbor.gtnn.GTNN;
 import dev.arbor.gtnn.api.recipe.GTNNBedrockOreMinerLogic;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BedrockOreMinerMachine.class)
 public class BedrockOreMinerMachineMixin {
+
     @Unique
     private BedrockOreMinerLogic gtnn$LOGIC;
 

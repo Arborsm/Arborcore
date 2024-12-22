@@ -18,8 +18,6 @@ import com.gregtechceu.gtceu.api.machine.feature.multiblock.IDisplayUIMachine
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine
 import com.gregtechceu.gtceu.api.recipe.GTRecipe
 import com.gregtechceu.gtceu.api.recipe.content.Content
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult
 import com.gregtechceu.gtceu.common.data.GTMaterials
 import com.gregtechceu.gtceu.common.machine.multiblock.part.ItemBusPartMachine
 import com.gregtechceu.gtceu.utils.FormattingUtil
@@ -302,7 +300,7 @@ class NeutronActivatorMachine(holder: IMachineBlockEntity, vararg args: Any) : W
         return true
     }
 
-    override fun getRealRecipe(recipe: GTRecipe, params: OCParams, result: OCResult): GTRecipe? {
+    override fun getRealRecipe(recipe: GTRecipe): GTRecipe? {
         val conditions = recipe.conditions.filter(NeutronActivatorCondition::class.java::isInstance)
         val newRecipe = recipe.copy()
         newRecipe.duration = Math.round((newRecipe.duration * getVelocityFactor()).coerceAtLeast(1.0)).toInt()
@@ -314,7 +312,7 @@ class NeutronActivatorMachine(holder: IMachineBlockEntity, vararg args: Any) : W
                     listOf(Content(Ingredient.of(GTNNItems.RADIOACTIVE_WASTE), 1, 1, 0, "", ""))
             }
         }
-        return super.getRealRecipe(newRecipe, params, result)
+        return super.getRealRecipe(newRecipe)
     }
 
 

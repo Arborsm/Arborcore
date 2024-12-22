@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "dev.arbor.gtnn.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "gtnn-refmap.json",
+  "refmap": "gtnn.refmap.json",
   "plugin": "dev.arbor.gtnn.mixin.GTNNMixinPlugin",
   "mixins": [
     "create.CreateFanMixin",
@@ -16,6 +16,9 @@
     "gt.GTOreMixin",
     "gt.GTRecipeConditionsMixin",
     "gt.GTRecipeTypeMixin",
+    "gt.GTSyncedFieldAccessorsMixin",
+    "gt.MaterialBuilderMixin",
+    "gt.MaterialMixin",
     "gt.OreGeneratorMixin",
     "gt.OreRecipeHandlerMixin",
     "mc.MinecraftServerMixin",

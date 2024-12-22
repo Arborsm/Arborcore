@@ -9,16 +9,21 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.OreProperty;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys;
+
+import net.minecraft.resources.ResourceLocation;
+
 import dev.arbor.gtnn.GTNN;
 import dev.arbor.gtnn.GTNNIntegration;
 import dev.arbor.gtnn.api.recipe.GTNNBuilder;
 import dev.arbor.gtnn.data.materials.*;
 import dev.arbor.gtnn.data.recipes.BrineChain;
-import net.minecraft.resources.ResourceLocation;
+
+import java.util.Locale;
 
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.SHINY;
 
 public class GTNNMaterials extends Material {
+
     public static Material AndesiteAlloy;
     public static Material Desh;
     public static Material Ostrum;
@@ -148,12 +153,12 @@ public class GTNNMaterials extends Material {
     }
 
     public static void addDust(Material material) {
-        if (!material.hasProperty(PropertyKey.DUST)){
+        if (!material.hasProperty(PropertyKey.DUST)) {
             material.setProperty(PropertyKey.DUST, new DustProperty());
         }
     }
 
-    public static void addFluid(Material material){
+    public static void addFluid(Material material) {
         if (!material.hasProperty(PropertyKey.FLUID)) {
             material.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
         }
@@ -180,6 +185,8 @@ public class GTNNMaterials extends Material {
     }
 
     public static class MaterialIcons {
-        public static MaterialIconSet InfinityIcon = new MaterialIconSet("infinity", SHINY);
+
+        public static MaterialIconSet InfinityIcon = MaterialIconSet.ICON_SETS
+                .getOrDefault("infinity".toLowerCase(Locale.ENGLISH), new MaterialIconSet("infinity", SHINY));
     }
 }

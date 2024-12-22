@@ -1,28 +1,11 @@
 dependencies {
-    minecraft "com.mojang:minecraft:${libs.versions.minecraft.get()}"
-    mappings loom.layered {
-        //it.mappings("org.quiltmc:quilt-mappings:${libs.versions.minecraft.get()}+build.${libs.versions.quiltMappings.get()}:intermediary-v2")
-        it.parchment("org.parchmentmc.data:parchment-${libs.versions.minecraft.get()}:${libs.versions.parchment.get()}@zip")
-        it.officialMojangMappings { nameSyntheticMembers = false }
-    }
-
-    forge forge.minecraftForge
+    compileOnly 'org.jetbrains:annotations:24.1.0'
 
     // kotlin
-    runtimeOnly "thedarkcolour:kotlinforforge:4.10.0"
-    compileOnly("thedarkcolour:kotlinforforge:4.10.0")
-    include("maven.modrinth:kotlin-for-forge:4.10.0")
-
-    // lombok
-    compileOnly 'org.projectlombok:lombok:1.18.24'
-    annotationProcessor 'org.projectlombok:lombok:1.18.24'
-
-    implementation 'com.google.code.findbugs:jsr305:3.0.2'
-
-    // tests
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
-    testImplementation 'io.javalin:javalin:5.4.2'
-    testImplementation 'org.mockito:mockito-core:5.2.0'
+    runtimeOnly "thedarkcolour:kotlinforforge:4.11.0"
+    compileOnly("thedarkcolour:kotlinforforge:4.11.0")
+    modApi("maven.modrinth:kotlin-for-forge:4.11.0") { transitive = false }
+    jarJar("maven.modrinth:kotlin-for-forge:4.11.0")
 
     // LDLib
     modImplementation(forge.ldlib.forge) { transitive = false }
@@ -52,8 +35,9 @@ dependencies {
     modImplementation(forge.jade)
 
     // Mixin Extras
-    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${this.forge.versions.mixinextras.get()}"))
-    implementation(include("io.github.llamalad7:mixinextras-forge:${this.forge.versions.mixinextras.get()}"))
+    api(annotationProcessor("io.github.llamalad7:mixinextras-common:${this.forge.versions.mixinextras.get()}"))
+    implementation("io.github.llamalad7:mixinextras-forge:${this.forge.versions.mixinextras.get()}")
+    annotationProcessor 'org.spongepowered:mixin:0.8.7:processor'
 
     // Configuration
     modImplementation(forge.configuration)
@@ -72,8 +56,8 @@ dependencies {
     modImplementation(forge.resourcefullib) { transitive = false }
     modImplementation(forge.resourcefulconfig)
     modImplementation(forge.botarium)
-    forgeRuntimeLibrary("com.teamresourceful:ByteCodecs:1.0.2")
-    forgeRuntimeLibrary("com.teamresourceful:yabn:1.0.3")
+    modExtraRuntimeOnly("com.teamresourceful:ByteCodecs:1.0.2")
+    modExtraRuntimeOnly("com.teamresourceful:yabn:1.0.3")
 
     // lib
     //modImplementation("org.arbor:arbormixin:1.0")
@@ -85,7 +69,7 @@ dependencies {
     //others
     modImplementation("curse.maven:supplementaries-412082:5340612")
     modImplementation("curse.maven:cc-tweaked-282001:5118388")
-    forgeRuntimeLibrary("cc.tweaked:cobalt:0.9.1")
+    modExtraRuntimeOnly("cc.tweaked:cobalt:0.9.1")
     modImplementation("curse.maven:selene-499980:5361081")
     //modImplementation("com.cobblemon:forge:1.5.0+")
     //modImplementation("curse.maven:ascension-megamons-971821:5336649")

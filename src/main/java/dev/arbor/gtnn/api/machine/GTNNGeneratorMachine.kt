@@ -5,8 +5,7 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine
 import com.gregtechceu.gtceu.api.machine.SimpleGeneratorMachine
 import com.gregtechceu.gtceu.api.recipe.GTRecipe
 import com.gregtechceu.gtceu.api.recipe.RecipeHelper
-import com.gregtechceu.gtceu.api.recipe.logic.OCParams
-import com.gregtechceu.gtceu.api.recipe.logic.OCResult
+import com.gregtechceu.gtceu.api.recipe.modifier.ModifierFunction
 import it.unimi.dsi.fastutil.ints.Int2IntFunction
 
 class GTNNGeneratorMachine(
@@ -23,22 +22,21 @@ class GTNNGeneratorMachine(
             }
         }
 
-        @Suppress("UNUSED_PARAMETER")
-        fun nonParallel(machine: MetaMachine, recipe: GTRecipe, ocParams: OCParams, ocResult: OCResult): GTRecipe? {
+        fun nonParallel(machine: MetaMachine, recipe: GTRecipe): ModifierFunction {
             if (machine is GTNNGeneratorMachine) {
-                val eut = RecipeHelper.getOutputEUt(recipe)
-                val recipeModified = recipe.copy()
-                RecipeHelper.setOutputEUt(
-                    recipeModified, eut * machine.efficiency / 100
-                )
-                return recipeModified
+                return ModifierFunction {
+                    val eut = RecipeHelper.getOutputEUt(recipe)
+                    val recipeModified = recipe.copy()
+                    RecipeHelper.setOutputEUt(recipeModified, eut * machine.efficiency / 100)
+                    recipeModified
+                }
             }
-            return null
+            return ModifierFunction.NULL
         }
 
-        fun parallel(machine: MetaMachine, recipe: GTRecipe, ocParams: OCParams, ocResult: OCResult): GTRecipe? {
-            val recipeModifier = nonParallel(machine, recipe, ocParams, ocResult)
-            return recipeModifier?.let { recipeModifier(machine, it, ocParams, ocResult) }
+        fun parallel(machine: MetaMachine, recipe: GTRecipe): ModifierFunction {
+            val recipeModifier = nonParallel(machine, recipe)
+            return recipeModifier.apply(recipe)?.let { recipeModifier(machine, it) } ?: ModifierFunction.NULL
         }
     }
 

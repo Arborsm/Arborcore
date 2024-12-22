@@ -1,7 +1,7 @@
 package dev.arbor.gtnn.integration.emi.bedrockores
 
 import com.gregtechceu.gtceu.api.GTValues.*
-import com.gregtechceu.gtceu.common.data.GTMachines
+import com.gregtechceu.gtceu.common.data.machines.GTMultiMachines
 import dev.arbor.gtnn.api.recipe.OresHelper
 import dev.arbor.gtnn.api.tool.StringTools.nn
 import dev.arbor.gtnn.data.GTNNMachines
@@ -23,9 +23,9 @@ class GTNNBedRockOresEmiCategory :
 
         fun registerWorkStations(registry: EmiRegistry) {
             registry.addWorkstation(CATEGORY, EmiStack.of(GTNNMachines.STONE_BEDROCK_ORE_MACHINE.asStack()))
-            registry.addWorkstation(CATEGORY, EmiStack.of(GTMachines.BEDROCK_ORE_MINER[MV].asStack()))
-            registry.addWorkstation(CATEGORY, EmiStack.of(GTMachines.BEDROCK_ORE_MINER[HV].asStack()))
-            registry.addWorkstation(CATEGORY, EmiStack.of(GTMachines.BEDROCK_ORE_MINER[EV].asStack()))
+            registry.addWorkstation(CATEGORY, EmiStack.of(GTMultiMachines.BEDROCK_ORE_MINER[MV].asStack()))
+            registry.addWorkstation(CATEGORY, EmiStack.of(GTMultiMachines.BEDROCK_ORE_MINER[HV].asStack()))
+            registry.addWorkstation(CATEGORY, EmiStack.of(GTMultiMachines.BEDROCK_ORE_MINER[EV].asStack()))
         }
     }
 

@@ -2,8 +2,10 @@ package dev.arbor.gtnn.mixin.gt;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.llamalad7.mixinextras.sugar.Local;
+
 import net.minecraft.resources.ResourceLocation;
+
+import com.llamalad7.mixinextras.sugar.Local;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;

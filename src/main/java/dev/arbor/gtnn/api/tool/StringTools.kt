@@ -17,6 +17,6 @@ object StringTools {
     }
 
     fun String.nn(): ResourceLocation {
-        return this.rl(GTNN.MODID)
+        return this.rl(GTNN.MOD_ID)
     }
 }
