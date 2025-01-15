@@ -13,7 +13,6 @@
     "gt.GTBlocksMixin",
     "gt.GTOreByProductMixin",
     "gt.GTOreDefinitionMixin",
-    "gt.GTOreMixin",
     "gt.GTRecipeConditionsMixin",
     "gt.GTRecipeTypeMixin",
     "gt.GTSyncedFieldAccessorsMixin",

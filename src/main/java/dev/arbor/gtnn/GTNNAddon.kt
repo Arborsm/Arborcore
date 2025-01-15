@@ -62,6 +62,6 @@ class GTNNAddon : IGTAddon {
     }
 
     override fun registerCovers() {
-        GTNNCovers.init();
+        GTNNCovers.init()
     }
 }

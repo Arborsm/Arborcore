@@ -23,10 +23,8 @@ import net.minecraftforge.event.server.ServerStoppedEvent
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
 import org.apache.commons.io.FileUtils
 import java.io.File
-import java.io.IOException
 
-
-@Suppress("UNUSED_PARAMETER")
+@Suppress("unused")
 object GTNNRegistries {
     private lateinit var MATERIAL_REGISTRY: MaterialRegistry
 
@@ -75,14 +73,10 @@ object GTNNRegistries {
     fun getAllPackResources(): List<PackResources> {
         val packResources = ArrayList<PackResources>()
         if (GTNNIntegration.isAdAstraLoaded()) {
-            val inputStream = GTNNRegistries::class.java.getResourceAsStream("/data/gtnn/ad_astra.zip")!!
-            try {
-                val tempFile = File.createTempFile("temp", ".tmp")
-                FileUtils.copyInputStreamToFile(inputStream, tempFile)
-                inputStream.close()
+            this::class.java.getResourceAsStream("/data/gtnn/ad_astra.zip").use {
+                val tempFile = File.createTempFile("gtnn_resource_pack", ".tmp")
+                FileUtils.copyInputStreamToFile(it, tempFile)
                 packResources.add(FilePackResources(tempFile.getName(), tempFile, false))
-            } catch (e: IOException) {
-                GTNN.LOGGER.error("ad_astra.zip wrong!", e)
             }
         }
         return packResources

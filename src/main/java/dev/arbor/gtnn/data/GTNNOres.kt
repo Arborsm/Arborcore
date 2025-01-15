@@ -11,6 +11,7 @@ import dev.arbor.gtnn.GTNN.id
 import dev.arbor.gtnn.GTNNIntegration.isAdAstraLoaded
 import dev.arbor.gtnn.GTNNIntegration.isTwilightForestLoaded
 import dev.arbor.gtnn.data.GTNNWorld.GTNNWorldGenLayers
+import dev.arbor.gtnn.worldgen.GTOreVein.oreRemove
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes
 import java.util.function.Consumer
@@ -1563,5 +1564,6 @@ object GTNNOres {
     }
 
     fun init() {
+        if (isAdAstraLoaded()) oreRemove()
     }
 }

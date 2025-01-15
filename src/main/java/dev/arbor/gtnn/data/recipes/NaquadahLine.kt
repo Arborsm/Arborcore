@@ -5,10 +5,10 @@ import com.gregtechceu.gtceu.api.data.tag.TagPrefix
 import com.gregtechceu.gtceu.api.machine.multiblock.CleanroomType
 import com.gregtechceu.gtceu.common.data.GTMaterials
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes
-import dev.arbor.gtnn.data.GTNNTagPrefix
 import dev.arbor.gtnn.data.GTNNMaterials
 import dev.arbor.gtnn.data.GTNNRecipeTypes
 import dev.arbor.gtnn.data.GTNNRecipes
+import dev.arbor.gtnn.data.GTNNTagPrefix
 import net.minecraft.data.recipes.FinishedRecipe
 import java.util.function.Consumer
 
@@ -289,7 +289,7 @@ object NaquadahLine {
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(GTNNMaterials.EnrichedNaquadahOxideMixture.name)
             .inputItems(TagPrefix.dust, GTNNMaterials.EnrichedNaquadahOxideMixture, 2)
             .inputFluids(GTMaterials.FluoroantimonicAcid.getFluid(3000))
-            .outputItems(TagPrefix.dust, GTMaterials.TitaniumTrifluoride, 1)
+            .outputItems(TagPrefix.dust, GTMaterials.TitaniumTrifluoride, 7)
             .outputFluids(GTMaterials.ImpureEnrichedNaquadahSolution.getFluid(2000))
             .EUt(GTValues.VA[GTValues.EV].toLong())
             .duration(GTNNRecipes.dur(10.0))
@@ -298,7 +298,7 @@ object NaquadahLine {
         GTRecipeTypes.CHEMICAL_RECIPES.recipeBuilder(GTNNMaterials.NaquadriaOxideMixture.name)
             .inputItems(TagPrefix.dust, GTNNMaterials.NaquadriaOxideMixture, 2)
             .inputFluids(GTMaterials.FluoroantimonicAcid.getFluid(3000))
-            .outputItems(TagPrefix.dust, GTMaterials.TitaniumTrifluoride, 1)
+            .outputItems(TagPrefix.dust, GTMaterials.TitaniumTrifluoride, 7)
             .outputFluids(GTMaterials.ImpureNaquadriaSolution.getFluid(2000))
             .EUt(GTValues.VA[GTValues.IV].toLong())
             .duration(GTNNRecipes.dur(20.0))
